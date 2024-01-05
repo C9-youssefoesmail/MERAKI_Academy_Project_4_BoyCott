@@ -8,7 +8,7 @@ const productSchema = mongoose.Schema({
   isSafeProduct: { type: Boolean, require: true },
   oppositeProduct: { type: mongoose.Schema.Types.ObjectId, ref: "Product" }, //!Product
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  review: { type: mongoose.Schema.Types.ObjectId, ref: "Comment" },
+  review: { type: mongoose.Schema.Types.ObjectId, ref: "Comment" },//! [{}]
 });
 
 module.exports = mongoose.module("Product", productSchema);

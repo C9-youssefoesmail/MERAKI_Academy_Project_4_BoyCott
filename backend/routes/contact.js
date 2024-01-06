@@ -1,10 +1,11 @@
 const express = require("express")
 
-const {} = require("../controllers/contact")
+const {createMessage} = require("../controllers/contact")
 
 const contactRouter = express.Router();
 
 //CURDs
+contactRouter.post("/",createMessage)
 
 contactRouter.use("*",(req,res)=>{
     res.json("contactRouter is working")

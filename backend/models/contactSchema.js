@@ -6,4 +6,9 @@ const contactSchema = mongoose.Schema({
   text: { type: String, require: true },
 });
 
+//modify email toLowerCase()
+contactSchema.pre("save",function(){
+  this.email = this.email.toLowerCase();
+})
+
 module.exports = mongoose.model("contact", contactSchema);

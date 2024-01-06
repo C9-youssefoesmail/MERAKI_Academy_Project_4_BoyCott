@@ -9,11 +9,10 @@ const userSchema = mongoose.Schema({
 });
 
 //modify register email toLowerCase()
-userSchema.pre("save",async function(){
+userSchema.pre("save", async function () {
   this.email = this.email.toLowerCase();
   //hashing
-  this.password = await bcrypt.hash(this.password , 7)
-})
-
+  this.password = await bcrypt.hash(this.password, 7);
+});
 
 module.exports = mongoose.model("User", userSchema);

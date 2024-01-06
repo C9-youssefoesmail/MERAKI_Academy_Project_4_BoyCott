@@ -76,69 +76,89 @@ const getProductByCategory = (req, res) => {
 };
 
 //getProductById
-const getProductById = (req,res) => {
-    const {_id} = req.params
+const getProductById = (req, res) => {
+  const { _id } = req.params;
 
-    productModel
-    .find({_id})
-    .then((result)=>{
-        res.status(200).json({
-            success: true,
-            message: "product found",
-            _product: result
-        })
+  productModel
+    .find({ _id })
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "product found",
+        _product: result,
+      });
     })
-    .catch((err)=>{
-        res.status(500).json({
-            success: false,
-            message: "Server Error",
-            error: err
-        })
-    })
-}
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        error: err,
+      });
+    });
+};
 
 //updateProductById
-const updateProductById = (req,res) => {
-    const {id} = req.params;
-    const {productName, reason, link, productImage, isSafeProduct, categories, oppositeProduct } = req.body;
+const updateProductById = (req, res) => {
+  const { id } = req.params;
+  const {
+    productName,
+    reason,
+    link,
+    productImage,
+    isSafeProduct,
+    categories,
+    oppositeProduct,
+  } = req.body;
 
-    productModel
-    .findOneAndUpdate({_id:id},{productName, reason, link, productImage, isSafeProduct, categories, oppositeProduct},{new:true})
+  productModel
+    .findOneAndUpdate(
+      { _id: id },
+      {
+        productName,
+        reason,
+        link,
+        productImage,
+        isSafeProduct,
+        categories,
+        oppositeProduct,
+      },
+      { new: true }
+    )
     .then((result) => {
-        res.status(200).json({
-            success: true,
-            message: "product changed",
-            _product: result
-        })
+      res.status(200).json({
+        success: true,
+        message: "product changed",
+        _product: result,
+      });
     })
-    .catch((err)=>{
-        res.status(500).json({
-            success: false,
-            message: "Server Error",
-            error: err
-        })
-    })
-}
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        error: err,
+      });
+    });
+};
 
 //deleteProductById
-const deleteProductById = (req,res) => {
-    const {id} = req.params
+const deleteProductById = (req, res) => {
+  const { id } = req.params;
 
-    productModel
-    .findOneAndDelete({_id:id})
-    .then((result)=>{
-        res.send({
-            success: true,
-            message: "product deleted"
-        })
+  productModel
+    .findOneAndDelete({ _id: id })
+    .then((result) => {
+      res.send({
+        success: true,
+        message: "product deleted",
+      });
     })
-    .catch((err)=>{
-        res.send({
-            success: false,
-            message: "something is wrong"
-        })
-    })
-}
+    .catch((err) => {
+      res.send({
+        success: false,
+        message: "something is wrong",
+      });
+    });
+};
 
 module.exports = {
   createProduct,
@@ -146,5 +166,5 @@ module.exports = {
   getProductByCategory,
   getProductById,
   updateProductById,
-  deleteProductById
+  deleteProductById,
 };

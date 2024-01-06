@@ -12,4 +12,4 @@ const authorization = (text) => {
   };
 };
 
-module.exports = authorization
+module.exports = authorization;

@@ -1,55 +1,55 @@
 const contactModel = require("../models/contactSchema");
 
-//createMessage 
-const createMessage = (req,res) => {
-    const {name, email, text} = req.body;
+//createMessage
+const createMessage = (req, res) => {
+  const { name, email, text } = req.body;
 
-    const newContact = new contactModel({
-        name,
-        email,
-        text
-    })
+  const newContact = new contactModel({
+    name,
+    email,
+    text,
+  });
 
-    newContact
+  newContact
     .save()
-    .then((result)=>{
-        res.send({
-            success: true,
-            message: "message created successfully",
-            _message: result
-        })
+    .then((result) => {
+      res.send({
+        success: true,
+        message: "message created successfully",
+        _message: result,
+      });
     })
-    .catch((err)=>{
-        res.send({
-            success: false,
-            message: "something is wrong",
-            error: err
-        })
-    })
-}
+    .catch((err) => {
+      res.send({
+        success: false,
+        message: "something is wrong",
+        error: err,
+      });
+    });
+};
 
 //deleteMessageById
-const deleteMessageById = (req,res) => {
-    const {id} = req.params;
+const deleteMessageById = (req, res) => {
+  const { id } = req.params;
 
-    contactModel
-    .findOneAndDelete({_id:id})
-    .then((result)=>{
-        res.send({
-            success: true,
-            message: "message deleted"
-        })
+  contactModel
+    .findOneAndDelete({ _id: id })
+    .then((result) => {
+      res.send({
+        success: true,
+        message: "message deleted",
+      });
     })
-    .catch((err)=>{
-        res.send({
-            success: false,
-            message: "something is wrong",
-            error: err
-        })
-    })
-}
+    .catch((err) => {
+      res.send({
+        success: false,
+        message: "something is wrong",
+        error: err,
+      });
+    });
+};
 
 module.exports = {
-    createMessage,
-    deleteMessageById
-}
+  createMessage,
+  deleteMessageById,
+};

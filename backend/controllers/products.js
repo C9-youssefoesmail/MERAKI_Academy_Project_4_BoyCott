@@ -76,6 +76,26 @@ const getProductByCategory = (req, res) => {
 };
 
 //getProductById
+const getProductById = (req,res) => {
+    const {_id} = req.params
+
+    productModel
+    .find({_id})
+    .then((result)=>{
+        res.status(200).json({
+            success: true,
+            message: "product found",
+            _product: result
+        })
+    })
+    .catch((err)=>{
+        res.status(500).json({
+            success: false,
+            message: "Server Error",
+            error: err
+        })
+    })
+}
 
 //updateProductById
 
@@ -85,4 +105,5 @@ module.exports = {
   createProduct,
   getAllProducts,
   getProductByCategory,
+  getProductById,
 };

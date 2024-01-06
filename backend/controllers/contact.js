@@ -29,8 +29,27 @@ const createMessage = (req,res) => {
 }
 
 //deleteMessageById
+const deleteMessageById = (req,res) => {
+    const {id} = req.params;
 
+    contactModel
+    .findOneAndDelete({_id:id})
+    .then((result)=>{
+        res.send({
+            success: true,
+            message: "message deleted"
+        })
+    })
+    .catch((err)=>{
+        res.send({
+            success: false,
+            message: "something is wrong",
+            error: err
+        })
+    })
+}
 
 module.exports = {
     createMessage,
+    deleteMessageById
 }

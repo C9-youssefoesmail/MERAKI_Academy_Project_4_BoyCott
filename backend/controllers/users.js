@@ -81,23 +81,23 @@ const login = (req, res) => {
 
 //deleteUserById
 const deleteUserById = (req, res) => {
-    const {id} = req.params;
+  const { id } = req.params;
 
-    userModel
-    .findOneAndDelete({_id:id})
-    .then(()=>{
-        res.send({
-            success: true,
-            message: "user deleted",
-        })
+  userModel
+    .findOneAndDelete({ _id: id })
+    .then(() => {
+      res.send({
+        success: true,
+        message: "user deleted",
+      });
     })
-    .catch((err)=>{
-        res.send({
-            success: false,
-            message: "there is error",
-            error: err
-        })
-    })
+    .catch((err) => {
+      res.send({
+        success: false,
+        message: "there is error",
+        error: err,
+      });
+    });
 };
 
 module.exports = {

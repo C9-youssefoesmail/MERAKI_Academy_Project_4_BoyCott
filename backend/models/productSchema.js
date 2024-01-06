@@ -12,4 +12,4 @@ const productSchema = mongoose.Schema({
   review: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
 
-module.exports = mongoose.module("Product", productSchema);
+module.exports = mongoose.model("Product", productSchema);

@@ -11,4 +11,4 @@ const suggestionSchema = mongoose.Schema({
   status: { type: String, require: true },
 });
 
-module.exports = mongoose.module("Suggestion", suggestionSchema);
+module.exports = mongoose.model("Suggestion", suggestionSchema);

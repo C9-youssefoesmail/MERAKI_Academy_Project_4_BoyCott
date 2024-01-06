@@ -10,8 +10,8 @@ const createProduct = (req, res) => {
     isSafeProduct,
     categories,
     oppositeProduct,
-    createdBy,
   } = req.body;
+  const createdBy = req.token.userId
 
   const newProduct = new productModel({
     productName,
@@ -41,6 +41,19 @@ const createProduct = (req, res) => {
 };
 
 //getAllProducts
+const getAllProducts = (req,res) => {
+    productModel
+    .find({})
+    .populate("oppositeProduct, createdBy, review")
+    .then((result)=>{
+        res.status(200).json({
+            success: true
+        })
+    })
+    .catch((err)=>{
+        res.status(500).json(err)
+    })
+}
 
 //getProductByCategory
 
@@ -54,4 +67,5 @@ const createProduct = (req, res) => {
 
 module.exports = {
   createProduct,
+  getAllProducts
 };

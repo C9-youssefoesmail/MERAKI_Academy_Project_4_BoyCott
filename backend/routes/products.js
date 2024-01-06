@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { createProduct } = require("../controllers/products");
+const { createProduct ,getAllProducts } = require("../controllers/products");
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
 
@@ -13,6 +13,7 @@ productsRouter.post(
   authorization("CREATE_PRODUCT"),
   createProduct
 );
+productsRouter.get("/",getAllProducts)
 
 productsRouter.use("*", (req, res) => {
   res.json("productsRouter is working");

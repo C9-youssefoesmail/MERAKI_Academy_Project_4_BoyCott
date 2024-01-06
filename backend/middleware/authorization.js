@@ -11,3 +11,5 @@ const authorization = (text) => {
     }
   };
 };
+
+module.exports = authorization

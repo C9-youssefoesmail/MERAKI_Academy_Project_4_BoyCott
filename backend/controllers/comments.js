@@ -30,6 +30,24 @@ const createComment = (req, res) => {
 };
 
 //deleteCommentById
+const deleteCommentById = (req, res) => {
+  const { id } = req.params;
+  commentsModel
+    .findOneAndDelete({ _id: id })
+    .then(() => {
+      res.status(200).json({
+        success: true,
+        message: "comment deleted",
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        error: err,
+      });
+    });
+};
 
 module.exports = {
   createComment,

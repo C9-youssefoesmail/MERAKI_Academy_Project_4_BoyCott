@@ -1,7 +1,8 @@
 const productModel = require("../models/productSchema");
 
 //createProduct
-
+const createProduct = (req,res) => {
+}
 
 //getProductByCategory
 

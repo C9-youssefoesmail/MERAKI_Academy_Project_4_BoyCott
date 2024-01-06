@@ -11,7 +11,7 @@ const createProduct = (req, res) => {
     categories,
     oppositeProduct,
   } = req.body;
-  const createdBy = req.token.userId
+  const createdBy = req.token.userId;
 
   const newProduct = new productModel({
     productName,
@@ -41,22 +41,41 @@ const createProduct = (req, res) => {
 };
 
 //getAllProducts
-const getAllProducts = (req,res) => {
-    productModel
+const getAllProducts = (req, res) => {
+  productModel
     .find({})
-    .then((result)=>{
-        res.status(200).json(result)
+    .then((result) => {
+      res.status(200).json(result);
     })
-    .catch((err)=>{
-        res.status(500).json(err)
-    })
-}
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+};
 
 //getProductByCategory
+const getProductByCategory = (req, res) => {
+  const { categories } = req.params;
 
+  productModel
+    .find({ categories })
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({
+        success: true,
+        message: "Category found",
+        category: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        error: err,
+      });
+    });
+};
 
 //getProductById
-
 
 //updateProductById
 
@@ -64,5 +83,6 @@ const getAllProducts = (req,res) => {
 
 module.exports = {
   createProduct,
-  getAllProducts
+  getAllProducts,
+  getProductByCategory,
 };

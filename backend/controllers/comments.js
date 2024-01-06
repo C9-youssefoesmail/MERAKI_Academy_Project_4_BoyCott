@@ -18,7 +18,7 @@ const createComment = (req, res) => {
       res.send({
         success: true,
         message: "comment created",
-        article: result,
+        _comment: result,
       });
     })
     .catch((err) => {

@@ -1,15 +1,23 @@
-const express = require("express")
+const express = require("express");
 
-const {register, login} = require("../controllers/users")
+const { register, login, deleteUserById } = require("../controllers/users");
+const authentication = require("../middleware/authentication");
+const authorization = require("../middleware/authorization");
 
 const usersRouter = express.Router();
 
 //CURDs
 usersRouter.post("/register", register);
-usersRouter.post("/login",login);
+usersRouter.post("/login", login);
+usersRouter.delete(
+  "/:id",
+  authentication,
+  authorization("DELETE_USER"),
+  deleteUserById
+);
 
-usersRouter.use("*",(req,res)=>{
-    res.json("usersRouter is working")
-})
+usersRouter.use("*", (req, res) => {
+  res.json("usersRouter is working");
+});
 
 module.exports = usersRouter;

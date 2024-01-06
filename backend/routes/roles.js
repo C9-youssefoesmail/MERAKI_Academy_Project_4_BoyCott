@@ -1,13 +1,14 @@
-const express = require("express")
+const express = require("express");
 
-const {} = require("../controllers/roles")
+const { createNewRole } = require("../controllers/roles");
 
 const rolesRouter = express.Router();
 
 //CURDs
+rolesRouter.post("/", createNewRole);
 
-rolesRouter.use("*",(req,res)=>{
-    res.json("rolesRouter is working")
-})
+rolesRouter.use("*", (req, res) => {
+  res.json("rolesRouter is working");
+});
 
 module.exports = rolesRouter;

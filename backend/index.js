@@ -23,7 +23,7 @@ app.use("/products", productsRouter);
 app.use("/roles",rolesRouter);
 app.use("/comments",commentsRouter);
 app.use("/contact",contactRouter);
-app.use("./categories",categoriesRouter);
+app.use("/categories",categoriesRouter);
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));

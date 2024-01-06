@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express");
 const cors = require("cors");
 
@@ -6,6 +7,21 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// import database connection
+const db = require("./models/db");
+// import articles Router
+const usersRouter = require("./routes/users");
+const productsRouter = require("./routes/products");
+const rolesRouter = require("./routes/roles");
+const commentsRouter = require("./routes/comments");
+const contactRouter = require("./routes/contact");
+
+app.use("/users", usersRouter);
+app.use("/products", productsRouter);
+app.use("/roles",rolesRouter);
+app.use("/comments",commentsRouter);
+app.use("/contact",contactRouter);
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));

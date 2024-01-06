@@ -121,6 +121,24 @@ const updateProductById = (req,res) => {
 }
 
 //deleteProductById
+const deleteProductById = (req,res) => {
+    const {id} = req.params
+
+    productModel
+    .findOneAndDelete({_id:id})
+    .then((result)=>{
+        res.send({
+            success: true,
+            message: "product deleted"
+        })
+    })
+    .catch((err)=>{
+        res.send({
+            success: false,
+            message: "something is wrong"
+        })
+    })
+}
 
 module.exports = {
   createProduct,
@@ -128,4 +146,5 @@ module.exports = {
   getProductByCategory,
   getProductById,
   updateProductById,
+  deleteProductById
 };

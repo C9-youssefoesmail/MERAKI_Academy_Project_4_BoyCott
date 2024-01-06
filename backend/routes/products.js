@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { createProduct ,getAllProducts, getProductByCategory, getProductById, updateProductById } = require("../controllers/products");
+const { createProduct ,getAllProducts, getProductByCategory, getProductById, updateProductById, deleteProductById } = require("../controllers/products");
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
 
@@ -17,6 +17,7 @@ productsRouter.get("/",getAllProducts)
 productsRouter.get("/:categories",getProductByCategory)
 productsRouter.get("/search_1/:_id",getProductById)
 productsRouter.put("/:id",updateProductById)
+productsRouter.delete("/:id",deleteProductById)
 
 productsRouter.use("*", (req, res) => {
   res.json("productsRouter is working");

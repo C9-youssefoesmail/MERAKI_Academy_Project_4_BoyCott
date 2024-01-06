@@ -2,9 +2,9 @@ const commentsModel = require("../models/commentSchema");
 
 //createComment
 const createComment = (req, res) => {
-  const { comment, product, createdBy, createdDate } = req.body;
-  var myDate = new Date();
-  createdDate = myDate;
+  const { comment, product, createdBy } = req.body;
+  const myDate = new Date();
+  const createdDate = myDate;
   const newComment = new commentsModel({
     comment,
     product, //product ID
@@ -17,7 +17,7 @@ const createComment = (req, res) => {
       res.send({
         success: true,
         message: "comment created",
-        article: "the new comment you created",
+        article: result,
       });
     })
     .catch((err) => {

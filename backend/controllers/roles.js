@@ -11,7 +11,6 @@ const createNewRole = (req,res) => {
     newRole
     .save()
     .then((result)=>{
-        console.log("result => ",result,"newRole => ",newRole);
         res.status(201).json({
             success: true,
             message: "role created success",

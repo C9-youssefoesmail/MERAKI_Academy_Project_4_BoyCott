@@ -98,6 +98,27 @@ const getProductById = (req,res) => {
 }
 
 //updateProductById
+const updateProductById = (req,res) => {
+    const {id} = req.params;
+    const {productName, reason, link, productImage, isSafeProduct, categories, oppositeProduct } = req.body;
+
+    productModel
+    .findOneAndUpdate({_id:id},{productName, reason, link, productImage, isSafeProduct, categories, oppositeProduct},{new:true})
+    .then((result) => {
+        res.status(200).json({
+            success: true,
+            message: "product changed",
+            _product: result
+        })
+    })
+    .catch((err)=>{
+        res.status(500).json({
+            success: false,
+            message: "Server Error",
+            error: err
+        })
+    })
+}
 
 //deleteProductById
 
@@ -106,4 +127,5 @@ module.exports = {
   getAllProducts,
   getProductByCategory,
   getProductById,
+  updateProductById,
 };

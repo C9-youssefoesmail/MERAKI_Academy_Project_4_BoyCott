@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { createProduct ,getAllProducts, getProductByCategory, getProductById } = require("../controllers/products");
+const { createProduct ,getAllProducts, getProductByCategory, getProductById, updateProductById } = require("../controllers/products");
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
 
@@ -16,6 +16,7 @@ productsRouter.post(
 productsRouter.get("/",getAllProducts)
 productsRouter.get("/:categories",getProductByCategory)
 productsRouter.get("/search_1/:_id",getProductById)
+productsRouter.put("/:id",updateProductById)
 
 productsRouter.use("*", (req, res) => {
   res.json("productsRouter is working");

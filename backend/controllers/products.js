@@ -44,11 +44,8 @@ const createProduct = (req, res) => {
 const getAllProducts = (req,res) => {
     productModel
     .find({})
-    .populate("oppositeProduct, createdBy, review")
     .then((result)=>{
-        res.status(200).json({
-            success: true
-        })
+        res.status(200).json(result)
     })
     .catch((err)=>{
         res.status(500).json(err)

@@ -1,0 +1,6 @@
+.Products{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 600px;
+}

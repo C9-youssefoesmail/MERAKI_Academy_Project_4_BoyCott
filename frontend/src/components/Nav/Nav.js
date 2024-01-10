@@ -21,7 +21,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Mail, ModeNight, Notifications } from "@mui/icons-material";
 import { LoginContext } from "../../App";
 
-//!----------styled 
+//!----------styled
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
@@ -46,7 +46,6 @@ const Icons = styled(Box)(({ theme }) => ({
 }));
 
 const Nav = () => {
-
   //!---------------useContext
   const { isLoggedIn, setToken, setIsLoggedIn } = useContext(LoginContext);
 
@@ -60,7 +59,9 @@ const Nav = () => {
       <AppBar position="sticky">
         <StyledToolbar>
           <Typography>
-            <Link to="/Home"><Button color="secondary">Secondary</Button></Link>
+            <Link to="/Home">
+              <Button color="secondary">Secondary</Button>
+            </Link>
             <ListItem disablePadding>
               <ListItemButton
                 component="a"
@@ -82,22 +83,26 @@ const Nav = () => {
           <Search>
             <InputBase placeholder="search" />
           </Search>
-          {isLoggedIn ? <Icons>
-            <Badge badgeContent={4}>
-              <Mail />
-            </Badge>
-            <Badge badgeContent={2}>
-              <Notifications />
-            </Badge>
-            <Avatar
-              sx={{ width: 30, height: 30 }}
-              src=""
-              onClick={(e) => setOpen(true)}
-            />
-          </Icons> : <Icons>
-          <Link to="/Login">Login</Link>
-          <Link to="/Register">Register</Link>
-          </Icons>}
+          {isLoggedIn ? (
+            <Icons>
+              <Badge badgeContent={4}>
+                <Mail />
+              </Badge>
+              <Badge badgeContent={2}>
+                <Notifications />
+              </Badge>
+              <Avatar
+                sx={{ width: 30, height: 30 }}
+                src=""
+                onClick={(e) => setOpen(true)}
+              />
+            </Icons>
+          ) : (
+            <Icons>
+              <Link to="/Login">Login</Link>
+              <Link to="/Register">Register</Link>
+            </Icons>
+          )}
         </StyledToolbar>
         <Menu
           id="demo-positioned-menu"
@@ -113,7 +118,9 @@ const Nav = () => {
             horizontal: "right",
           }}
         >
-          <MenuItem>Profile</MenuItem>
+          <MenuItem>
+            <Link to="/Profile">Profile</Link>
+          </MenuItem>
           <MenuItem>
             <Link
               to="/Home"

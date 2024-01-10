@@ -100,8 +100,14 @@ const deleteUserById = (req, res) => {
     });
 };
 
+//getUserById
+const getUserById = (req,res) => {
+
+}
+
 module.exports = {
   register,
   login,
   deleteUserById,
+  getUserById,
 };

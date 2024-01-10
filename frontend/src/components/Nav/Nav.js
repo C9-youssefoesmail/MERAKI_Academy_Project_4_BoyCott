@@ -21,6 +21,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Mail, ModeNight, Notifications } from "@mui/icons-material";
 import { LoginContext } from "../../App";
 
+//!----------styled 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
@@ -45,11 +46,15 @@ const Icons = styled(Box)(({ theme }) => ({
 }));
 
 const Nav = () => {
+
+  //!---------------useContext
   const { isLoggedIn, setToken, setIsLoggedIn } = useContext(LoginContext);
 
+  //!---------------useState
   const [open, setOpen] = useState(false);
 
   //const navigate = useNavigate()
+  //!--------------return
   return (
     <>
       <AppBar position="sticky">
@@ -77,7 +82,7 @@ const Nav = () => {
           <Search>
             <InputBase placeholder="search" />
           </Search>
-          <Icons>
+          {isLoggedIn ? <Icons>
             <Badge badgeContent={4}>
               <Mail />
             </Badge>
@@ -89,7 +94,10 @@ const Nav = () => {
               src=""
               onClick={(e) => setOpen(true)}
             />
-          </Icons>
+          </Icons> : <Icons>
+          <Link to="/Login">Login</Link>
+          <Link to="/Register">Register</Link>
+          </Icons>}
         </StyledToolbar>
         <Menu
           id="demo-positioned-menu"

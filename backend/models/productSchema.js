@@ -13,3 +13,4 @@ const productSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model("Product", productSchema);
+// productName, reason, link, productImage, isSafeProduct, categories, oppositeProduct, createdBy, review

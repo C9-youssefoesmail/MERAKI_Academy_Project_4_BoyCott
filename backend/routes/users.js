@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { register, login, deleteUserById } = require("../controllers/users");
+const { register, login, deleteUserById, getUserById } = require("../controllers/users");
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
 
@@ -15,6 +15,7 @@ usersRouter.delete(
   authorization("DELETE_USER"),
   deleteUserById
 );
+usersRouter.get("/:id", getUserById)
 
 usersRouter.use("*", (req, res) => {
   res.json("usersRouter is working");

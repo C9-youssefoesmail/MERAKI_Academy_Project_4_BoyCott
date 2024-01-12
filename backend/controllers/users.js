@@ -101,9 +101,25 @@ const deleteUserById = (req, res) => {
 };
 
 //getUserById
-const getUserById = (req,res) => {
+const getUserById = (req, res) => {
+  const { id } = req.params;
 
-}
+  userModel.findById({ _id: id })
+  .then((result)=>{
+    res.send({
+      success: true,
+      message: "user found",
+      _result: result
+    });
+  })
+  .catch((err)=>{
+    res.send({
+      success: false,
+      message: "there is error",
+      error: err,
+    });
+  })
+};
 
 module.exports = {
   register,

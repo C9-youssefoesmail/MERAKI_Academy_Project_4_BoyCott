@@ -6,14 +6,13 @@ import React, { useState, createContext } from "react";
 import ProductItems from "./components/Items/ProductItems";
 import Nav from "./components/Nav/Nav";
 import Register from "./components/Register/Register";
-import { Home } from "@mui/icons-material";
+import Details from "./components/Details/Details";
 
 //createContext
 export const LoginContext = createContext();
 
 //App Function
 function App() {
-  
   //useNavigate
   const navigate = useNavigate();
 
@@ -22,19 +21,22 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn")
   );
+  const [productDetails, setProductDetails] = useState()
 
-  
   //return
   return (
-    <LoginContext.Provider value={{ token, setToken, setIsLoggedIn, isLoggedIn }}>
+    <LoginContext.Provider
+      value={{ token, setToken, setIsLoggedIn, isLoggedIn, productDetails, setProductDetails }}
+    >
       <div className="App">
         <Box>
-          <Nav/>
+          <Nav />
           <Routes>
-          <Route path="/Register" element={<Register />}></Route>
-          <Route path="/Login" element={<Login />}></Route>
-          <Route path="/Home" element={<ProductItems/>}></Route>
-        </Routes>
+            <Route path="/Details" element={<Details />}></Route>
+            <Route path="/Register" element={<Register />}></Route>
+            <Route path="/Login" element={<Login />}></Route>
+            <Route path="/Home" element={<ProductItems />}></Route>
+          </Routes>
         </Box>
       </div>
     </LoginContext.Provider>

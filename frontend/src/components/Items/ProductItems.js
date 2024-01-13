@@ -40,9 +40,10 @@ const ProductItems = () => {
   const goToProduct = (id, name) => {
     console.log(id, name);
     axios
-      .get(`http://localhost:5000/users/${id}`)
-      .then((result) => {console.log(productDetails);
-        navigate("/Details");
+      .get(`http://localhost:5000/products/search_1/${id}`)
+      .then((result) => {
+
+        navigate(`/${id}/Details`);
       })
       .catch((err) => {
         console.log("err: ", err);

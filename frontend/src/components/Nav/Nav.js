@@ -20,6 +20,7 @@ import {
 import { useNavigate, Link } from "react-router-dom";
 import { Mail, ModeNight, Notifications } from "@mui/icons-material";
 import { LoginContext } from "../../App";
+import "./style.css";
 
 //!----------styled
 const StyledToolbar = styled(Toolbar)({
@@ -60,7 +61,9 @@ const Nav = () => {
         <StyledToolbar>
           <Typography>
             <Link to="/Home">
-              <Button color="secondary">Secondary</Button>
+              <Button variant="contained">
+                Home
+              </Button>
             </Link>
             <ListItem disablePadding>
               <ListItemButton

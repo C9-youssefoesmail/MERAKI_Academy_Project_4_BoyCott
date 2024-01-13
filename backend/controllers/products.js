@@ -81,6 +81,7 @@ const getProductById = (req, res) => {
 
   productModel
     .find({ _id })
+    .populate("review")
     .then((result) => {
       res.status(200).json({
         success: true,

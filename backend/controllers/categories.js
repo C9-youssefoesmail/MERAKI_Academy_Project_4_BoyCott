@@ -25,6 +25,29 @@ const createCategory = (req, res) => {
     });
 };
 
+//getCategoryById
+const getCategoryById = (req,res) => {
+  const { id } = req.params;
+
+  CategoryModel
+    .findById({ _id: id })
+    .then((result)=>{
+      res.send({
+        success: true,
+        message: "category found",
+        _result: result
+      });
+    })
+    .catch((err)=>{
+      res.send({
+        success: false,
+        message: "there is error",
+        error: err,
+      });
+    })
+}
+
 module.exports = {
   createCategory,
+  getCategoryById,
 };

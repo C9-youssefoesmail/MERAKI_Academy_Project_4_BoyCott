@@ -32,10 +32,10 @@ function App() {
         <Box>
           <Nav />
           <Routes>
-            <Route path="/Details" element={<Details />}></Route>
+            <Route path="/:id/Details" element={<Details />}></Route>
             <Route path="/Register" element={<Register />}></Route>
             <Route path="/Login" element={<Login />}></Route>
-            <Route path="/Home" element={<ProductItems />}></Route>
+            <Route path="/" element={<ProductItems />}></Route>
           </Routes>
         </Box>
       </div>

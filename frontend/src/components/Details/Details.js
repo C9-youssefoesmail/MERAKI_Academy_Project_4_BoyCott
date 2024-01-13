@@ -1,25 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
-import { LoginContext } from "../../App";
+import React, { useEffect, useState } from "react";
 import {
   Box,
-  ButtonBase,
-  Card,
-  CardContent,
   CardMedia,
   Grid,
   Link,
   List,
-  ListItem,
-  ListItemIcon,
   Paper,
-  Typography,
   styled,
 } from "@mui/material";
 import "./style.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 
 //styled
 const Item = styled(Paper)(({ theme }) => ({
@@ -36,29 +29,29 @@ const Item = styled(Paper)(({ theme }) => ({
 //Details function
 const Details = () => {
   //useState
-  const [productDetails, setProductDetails] = useState("");
-  const [idItem, setIdItem] = useState("");
+  const [productDetails, setProductDetails] = useState({});
 
-  //let x = await productDetails
+  //product id from URL
   const { id } = useParams();
   console.log(id);
-  // console.log(idItem);
+  
+  //goToProduct
   const goToProduct = () => {
     axios
       .get(`http://localhost:5000/products/search_1/${id}`)
       .then((result) => {
-        console.log(result.data._product[0]);
         setProductDetails(result.data._product[0]);
-        console.log(productDetails);
       })
       .catch((err) => {
         console.log("err: ", err);
       });
   };
 
+  //useEffect
   useEffect(() => {
     goToProduct();
   }, []);
+
   //return of the component
   return (
     <div>
@@ -82,12 +75,19 @@ const Details = () => {
               <Link href={productDetails.link}>Link</Link>
             </Item>
             <Item>
-              {productDetails.isSafeProduct ? <ThumbUpAltIcon /> : <ThumbDownAltIcon/>}
+              {productDetails.isSafeProduct ? (
+                <ThumbUpAltIcon />
+              ) : (
+                <ThumbDownAltIcon />
+              )}
             </Item>
-            <Item>{productDetails.categories}</Item>
+            <Item>{productDetails.categories && productDetails.categories.typeName}</Item>
           </Grid>
           <Grid item xs={12}>
-            <Item>{productDetails.review}</Item>
+            {productDetails.review && productDetails.review.map((comment, i) => {
+              console.log(comment);
+              return <Item>{comment.comment}</Item>;
+            })}
           </Grid>
         </Grid>
       </Box>

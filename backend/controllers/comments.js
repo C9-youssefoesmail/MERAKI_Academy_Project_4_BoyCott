@@ -1,4 +1,5 @@
 const commentsModel = require("../models/commentSchema");
+const productModel = require("../models/productSchema");
 
 //createComment
 const createComment = (req, res) => {
@@ -15,11 +16,26 @@ const createComment = (req, res) => {
   newComment
     .save()
     .then((result) => {
-      res.send({
-        success: true,
-        message: "comment created",
-        _comment: result,
-      });
+      productModel
+        .findByIdAndUpdate(
+          { _id: product },
+          { $push: { review: result._id } },
+          { new: true }
+        )
+        .then((result) => {
+          res.status(201).json({
+            success: true,
+            message: `Comment added`,
+            comment: result,
+          });
+        })
+        .catch((err) => {
+          res.send({
+            success: false,
+            message: "productModel Error",
+            error: err,
+          });
+        });
     })
     .catch((err) => {
       res.send({

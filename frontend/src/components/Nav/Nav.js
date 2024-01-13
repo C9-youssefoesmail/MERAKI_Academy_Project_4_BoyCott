@@ -60,7 +60,7 @@ const Nav = () => {
       <AppBar position="sticky">
         <StyledToolbar>
           <Typography>
-            <Link to="/Home">
+            <Link to="/">
               <Button variant="contained">
                 Home
               </Button>
@@ -68,7 +68,7 @@ const Nav = () => {
             <ListItem disablePadding>
               <ListItemButton
                 component="a"
-                href="#home"
+                href=""
                 sx={{
                   backgroundColor: "#aaa",
                   color: "#aaa",
@@ -126,7 +126,7 @@ const Nav = () => {
           </MenuItem>
           <MenuItem>
             <Link
-              to="/Home"
+              to="/"
               onClick={() => {
                 //localStorage.clear()
                 localStorage.removeItem("token");

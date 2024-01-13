@@ -26,7 +26,7 @@ const Login = () => {
           setIsLoggedIn(true);
           localStorage.setItem("token", result.data.token);
           localStorage.setItem("isLoggedIn", true);
-          navigate("/Home");
+          navigate("/");
         })
         .catch((err) => {
           setMessage(err.response.data.message);

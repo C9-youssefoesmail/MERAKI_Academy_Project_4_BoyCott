@@ -27,7 +27,7 @@ const Register = () => {
         .post("http://localhost:5000/users/register", newUser)
         .then((result) => {
           setMesage(result.data.message);
-          navigate("/Home");
+          navigate("/");
         })
         .catch((err) => {
           setMesage(err.response.data.message);

@@ -120,7 +120,7 @@ const Nav = () => {
             <Link to="/Profile">Profile</Link>
           </MenuItem>
           {userStatus === "admin" && <MenuItem>
-            <Link to="/createProduct">Create Product</Link>
+            <Link to="/CreateProduct">Create Product</Link>
           </MenuItem>}
           <MenuItem>
             <Link

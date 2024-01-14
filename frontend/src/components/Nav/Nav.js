@@ -31,13 +31,8 @@ const StyledToolbar = styled(Toolbar)({
 const Search = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  //marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "20%",
-  // [theme.breakpoints.up('sm')]: {
-  //   marginLeft: theme.spacing(3),
-  //   width: 'auto',
-  // },
 }));
 
 const Icons = styled(Box)(({ theme }) => ({
@@ -48,7 +43,7 @@ const Icons = styled(Box)(({ theme }) => ({
 
 const Nav = () => {
   //!---------------useContext
-  const { isLoggedIn, setToken, setIsLoggedIn, setUserStatus } = useContext(LoginContext);
+  const { isLoggedIn, setToken, setIsLoggedIn, setUserStatus, userStatus } = useContext(LoginContext);
 
   //!---------------useState
   const [open, setOpen] = useState(false);
@@ -124,11 +119,13 @@ const Nav = () => {
           <MenuItem>
             <Link to="/Profile">Profile</Link>
           </MenuItem>
+          {userStatus === "admin" && <MenuItem>
+            <Link to="/createProduct">Create Product</Link>
+          </MenuItem>}
           <MenuItem>
             <Link
               to="/"
               onClick={() => {
-                //localStorage.clear()
                 localStorage.removeItem("token");
                 localStorage.removeItem("isLoggedIn");
                 setToken("");

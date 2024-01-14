@@ -8,7 +8,7 @@ import "./style.css";
 const Login = () => {
   
   //useState
-  const { token, setToken, setIsLoggedIn, setUserStatus } = useContext(LoginContext);
+  const { token, setToken, setIsLoggedIn, setUserStatus, setUserId } = useContext(LoginContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -23,6 +23,8 @@ const Login = () => {
         .then((result) => {
           console.log(result.data.token);
           console.log(result.data._role.role);
+          console.log(result.data._userId);
+          setUserId(result.data._userId)
           setUserStatus(result.data._role.role)
           setToken(result.data.token);
           setIsLoggedIn(true);

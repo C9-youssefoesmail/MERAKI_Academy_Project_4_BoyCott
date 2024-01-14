@@ -21,12 +21,22 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn")
   );
-  const [userStatus, setUserStatus] = useState()
+  const [userStatus, setUserStatus] = useState("");
+  const [userId, setUserId] = useState("");
 
   //return
   return (
     <LoginContext.Provider
-      value={{ token, setToken, setIsLoggedIn, isLoggedIn, userStatus, setUserStatus }}
+      value={{
+        token,
+        setToken,
+        setIsLoggedIn,
+        isLoggedIn,
+        userStatus,
+        setUserStatus,
+        userId,
+        setUserId,
+      }}
     >
       <div className="App">
         <Box>

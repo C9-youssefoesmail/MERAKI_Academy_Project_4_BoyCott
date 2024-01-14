@@ -66,7 +66,8 @@ const login = (req, res) => {
             success: true,
             message: "Valid login",
             token: userToken,
-            _role:result.role
+            _role: result.role,
+            _userId: result._id,
           });
         }
       }
@@ -105,21 +106,22 @@ const deleteUserById = (req, res) => {
 const getUserById = (req, res) => {
   const { id } = req.params;
 
-  userModel.findById({ _id: id })
-  .then((result)=>{
-    res.send({
-      success: true,
-      message: "user found",
-      _result: result
+  userModel
+    .findById({ _id: id })
+    .then((result) => {
+      res.send({
+        success: true,
+        message: "user found",
+        _result: result,
+      });
+    })
+    .catch((err) => {
+      res.send({
+        success: false,
+        message: "there is error",
+        error: err,
+      });
     });
-  })
-  .catch((err)=>{
-    res.send({
-      success: false,
-      message: "there is error",
-      error: err,
-    });
-  })
 };
 
 module.exports = {

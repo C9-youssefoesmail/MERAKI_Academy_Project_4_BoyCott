@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Box,
+  Button,
   CardMedia,
   Grid,
+  Input,
   Link,
   List,
   Paper,
@@ -13,6 +15,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import { LoginContext } from "../../App";
 
 //styled
 const Item = styled(Paper)(({ theme }) => ({
@@ -28,13 +31,18 @@ const Item = styled(Paper)(({ theme }) => ({
 
 //Details function
 const Details = () => {
+
+  //useContext
+  const { token } = useContext(LoginContext);
+
   //useState
   const [productDetails, setProductDetails] = useState({});
+  const [comm, setComm] = useState("")
 
   //product id from URL
   const { id } = useParams();
   console.log(id);
-  
+
   //goToProduct
   const goToProduct = () => {
     axios
@@ -47,10 +55,29 @@ const Details = () => {
       });
   };
 
+  //createComment
+  const createComment = (id) => {
+    console.log(id);
+    if(comm){
+      axios
+      .post(`http://localhost:5000/comments`, comm, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((result)=>{
+        goToProduct()
+      })
+      .catch((err)=>{
+        console.log("error => ", err);
+      })
+    }
+  }
+
   //useEffect
   useEffect(() => {
     goToProduct();
   }, []);
+
+  const fdjj = {comm , }
 
   //return of the component
   return (
@@ -81,13 +108,29 @@ const Details = () => {
                 <ThumbDownAltIcon />
               )}
             </Item>
-            <Item>{productDetails.categories && productDetails.categories.typeName}</Item>
+            <Item>
+              {productDetails.categories && productDetails.categories.typeName}
+            </Item>
           </Grid>
           <Grid item xs={12}>
-            {productDetails.review && productDetails.review.map((comment, i) => {
-              console.log(comment);
-              return <Item>{comment.comment}</Item>;
-            })}
+            <Item>
+              {productDetails.review &&
+                productDetails.review.map((comment, i) => {
+                  console.log(comment);
+                  return <p>{comment.comment}</p>;
+                })}
+              <input
+                type="text"
+                placeholder="comment..."
+                onChange={(e) => {
+                  setComm(e.target.value)
+                  console.log(comm);
+                }}
+              />
+              <Button onClick={() => {
+                createComment(productDetails._id)
+              }}>Add Comment</Button>
+            </Item>
           </Grid>
         </Grid>
       </Box>

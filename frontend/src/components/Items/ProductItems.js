@@ -18,8 +18,11 @@ import { LoginContext } from "../../App";
 
 //productItems function
 const ProductItems = () => {
-  //useState
+  
+  //useContext
   const { productDetails, setProductDetails } = useContext(LoginContext);
+
+  //useState
   const [products, setProducts] = useState([]);
 
   //useNavigate
@@ -85,7 +88,7 @@ const ProductItems = () => {
                   </CardContent>
                   <CardActions>
                     <Button size="small"
-                    //onClick={}
+                    //onClick={URL}
                     >Share</Button>
                     <Button
                       size="small"

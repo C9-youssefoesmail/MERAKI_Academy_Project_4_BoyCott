@@ -7,7 +7,7 @@ import ProductItems from "./components/Items/ProductItems";
 import Nav from "./components/Nav/Nav";
 import Register from "./components/Register/Register";
 import Details from "./components/Details/Details";
-import CreateProduct from "./components/CreateProduct/CreateProduct"
+import CreateProduct from "./components/CreateProduct/CreateProduct";
 
 //createContext
 export const LoginContext = createContext();
@@ -18,12 +18,14 @@ function App() {
   const navigate = useNavigate();
 
   //useState
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem("token") || []);
   const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("isLoggedIn")
+    localStorage.getItem("isLoggedIn") || false
   );
-  const [userStatus, setUserStatus] = useState("");
-  const [userId, setUserId] = useState("");
+  const [userStatus, setUserStatus] = useState(
+    localStorage.getItem("userStatus") || ""
+  );
+  const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
 
   //return
   return (
@@ -47,7 +49,7 @@ function App() {
             <Route path="/Register" element={<Register />}></Route>
             <Route path="/Login" element={<Login />}></Route>
             <Route path="/" element={<ProductItems />}></Route>
-            <Route path="/CreateProduct" element={<CreateProduct/>}></Route>
+            <Route path="/CreateProduct" element={<CreateProduct />}></Route>
           </Routes>
         </Box>
       </div>

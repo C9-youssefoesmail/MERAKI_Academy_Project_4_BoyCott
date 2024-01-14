@@ -30,6 +30,8 @@ const Login = () => {
           setIsLoggedIn(true);
           localStorage.setItem("token", result.data.token);
           localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("userStatus", result.data._role.role);
+          localStorage.setItem("userId", result.data._userId)
           navigate("/");
         })
         .catch((err) => {

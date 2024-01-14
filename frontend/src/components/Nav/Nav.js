@@ -119,15 +119,17 @@ const Nav = () => {
           <MenuItem>
             <Link to="/Profile">Profile</Link>
           </MenuItem>
-          {userStatus === "admin" && <MenuItem>
+          {userStatus === "admin" ? <MenuItem>
             <Link to="/CreateProduct">Create Product</Link>
-          </MenuItem>}
+          </MenuItem> : ""}
           <MenuItem>
             <Link
               to="/"
               onClick={() => {
                 localStorage.removeItem("token");
                 localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("userStatus");
+                localStorage.removeItem("userId")
                 setToken("");
                 setIsLoggedIn(false);
                 setUserStatus("")
@@ -143,3 +145,6 @@ const Nav = () => {
 };
 
 export default Nav;
+
+// localStorage.setItem("userStatus", result.data._role.role);
+// localStorage.setItem("userId", result.data._userId)

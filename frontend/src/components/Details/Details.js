@@ -10,6 +10,7 @@ import {
   List,
   Modal,
   Paper,
+  TextField,
   styled,
 } from "@mui/material";
 import "./style.css";
@@ -160,20 +161,21 @@ const Details = () => {
           </Grid>
           <Grid item xs={12}>
             <Item>
-              <input
-                type="text"
-                placeholder="comment..."
-                onChange={(e) => {
+              <TextField
+              id="outlined-textarea"
+              label="comment..."
+              multiline
+              onChange={(e) => {
                   setComment(e.target.value);
                   console.log(comment, token);
                 }}
-              />
+            />
               <Button
                 onClick={() => {
                   createComment(productDetails._id);
                 }}
               >
-                Add Comment
+                Add
               </Button>
               {productDetails.review &&
                 productDetails.review.map((comment, i) => {

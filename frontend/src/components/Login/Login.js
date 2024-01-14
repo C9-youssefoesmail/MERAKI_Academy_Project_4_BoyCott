@@ -8,7 +8,7 @@ import "./style.css";
 const Login = () => {
   
   //useState
-  const { token, setToken, setIsLoggedIn } = useContext(LoginContext);
+  const { token, setToken, setIsLoggedIn, setUserStatus } = useContext(LoginContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -22,6 +22,8 @@ const Login = () => {
         .post("http://localhost:5000/users/login", userInfo) //userInfo
         .then((result) => {
           console.log(result.data.token);
+          console.log(result.data._role.role);
+          setUserStatus(result.data._role.role)
           setToken(result.data.token);
           setIsLoggedIn(true);
           localStorage.setItem("token", result.data.token);

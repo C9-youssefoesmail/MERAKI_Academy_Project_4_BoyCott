@@ -35,13 +35,12 @@ const Item = styled(Paper)(({ theme }) => ({
 //Details function
 const Details = () => {
   //useContext
-  const { token } = useContext(LoginContext);
+  const { token, userStatus } = useContext(LoginContext);
 
   //useState
   const [productDetails, setProductDetails] = useState({});
   const [comment, setComment] = useState("");
   const [product, setProduct] = useState("");
-  const [open, setOpen] = useState(false);
 
   //product id from URL
   const { id } = useParams();
@@ -92,7 +91,24 @@ const Details = () => {
           goToProduct();
         })
         .catch((err) => {
-          console.log(id);
+          console.log(id, "deleteComment =>",userStatus);
+          console.log("error => ", err);
+        });
+  };
+
+  //deleteCommentFromAdmin
+  const deleteCommentFromAdmin = (id) => {
+    axios
+        .delete(`http://localhost:5000/comments/search_2/${id}`, {
+          headers: { authorization: `Bearer ${token}` },
+        })
+        .then((result) => {
+          console.log("Done");
+          //! How to filter
+          goToProduct();
+        })
+        .catch((err) => {
+          console.log(id,"deleteCommentFromAdmin =>",userStatus);
           console.log("error => ", err);
         });
   };
@@ -149,7 +165,7 @@ const Details = () => {
                 placeholder="comment..."
                 onChange={(e) => {
                   setComment(e.target.value);
-                  console.log(comment);
+                  console.log(comment, token);
                 }}
               />
               <Button
@@ -169,7 +185,7 @@ const Details = () => {
                         <IconButton aria-label="delete" size="small">
                           <Delete
                             fontSize="inherit"
-                            onClick={() =>deleteComment(comment._id)}
+                            onClick={() =>{userStatus==="admin" ? deleteCommentFromAdmin(comment._id) : deleteComment(comment._id)}}
                             style={{ color: "red" }}
                           />
                         </IconButton>

@@ -48,7 +48,7 @@ const Icons = styled(Box)(({ theme }) => ({
 
 const Nav = () => {
   //!---------------useContext
-  const { isLoggedIn, setToken, setIsLoggedIn } = useContext(LoginContext);
+  const { isLoggedIn, setToken, setIsLoggedIn, setUserStatus } = useContext(LoginContext);
 
   //!---------------useState
   const [open, setOpen] = useState(false);
@@ -133,6 +133,7 @@ const Nav = () => {
                 localStorage.removeItem("isLoggedIn");
                 setToken("");
                 setIsLoggedIn(false);
+                setUserStatus("")
               }}
             >
               Logout

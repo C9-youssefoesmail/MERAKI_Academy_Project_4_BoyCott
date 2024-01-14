@@ -66,6 +66,7 @@ const login = (req, res) => {
             success: true,
             message: "Valid login",
             token: userToken,
+            _role:result.role
           });
         }
       }

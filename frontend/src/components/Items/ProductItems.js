@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, Profiler } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -14,13 +14,9 @@ import {
 } from "@mui/material";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
-import { LoginContext } from "../../App";
 
 //productItems function
 const ProductItems = () => {
-  
-  //useContext
-  const { productDetails, setProductDetails } = useContext(LoginContext);
 
   //useState
   const [products, setProducts] = useState([]);
@@ -93,7 +89,6 @@ const ProductItems = () => {
                     <Button
                       size="small"
                       onClick={() => {
-                        setProductDetails(productItem);
                         goToProduct(productItem._id, productItem);
                       }}
                     >

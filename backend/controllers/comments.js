@@ -75,7 +75,35 @@ const deleteCommentById = (req, res) => {
     });
 };
 
+//deleteCommentByAuthor
+const deleteCommentByAuthor = (req,res) => {
+  const { id } = req.params;
+  commentsModel
+    .findOneAndDelete({ _id: id })
+    .then((result) => {
+      if (result) {
+        res.status(200).json({
+          success: true,
+          message: "comment deleted",
+        });
+      } else {
+        res.status(403).json({
+          success: false,
+          message: "cant delete",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        error: err,
+      });
+    });
+}
+
 module.exports = {
   createComment,
   deleteCommentById,
+  deleteCommentByAuthor,
 };

@@ -1,3 +1,4 @@
+
 const CategoryModel = require("../models/categorySchema");
 
 //createcategory
@@ -47,7 +48,20 @@ const getCategoryById = (req,res) => {
     })
 }
 
+//getAllCategories
+const getAllCategories = (req,res) => {
+  CategoryModel
+  .find({})
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+}
+
 module.exports = {
   createCategory,
   getCategoryById,
+  getAllCategories
 };

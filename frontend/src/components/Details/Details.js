@@ -3,13 +3,17 @@ import {
   Box,
   Button,
   CardMedia,
+  FormControl,
   Grid,
   IconButton,
   Input,
+  InputLabel,
   Link,
   List,
+  MenuItem,
   Modal,
   Paper,
+  Select,
   TextField,
   styled,
 } from "@mui/material";
@@ -42,6 +46,7 @@ const Details = () => {
   const [productDetails, setProductDetails] = useState({});
   const [comment, setComment] = useState("");
   const [product, setProduct] = useState("");
+  const [productMap, setProductMap] = useState([])
 
   //product id from URL
   const { id } = useParams();
@@ -57,6 +62,19 @@ const Details = () => {
       })
       .catch((err) => {
         console.log("err: ", err);
+      });
+  };
+
+  //getAllProducts
+  const getAllProducts = () => {
+    axios
+      .get("http://localhost:5000/products")
+      .then((result) => {
+        setProductMap(result.data)
+        console.log(result.data);
+      })
+      .catch((err) => {
+        console.log("error in getAllProducts function");
       });
   };
 
@@ -114,9 +132,12 @@ const Details = () => {
         });
   };
 
+  //!---------------update product
+
   //useEffect
   useEffect(() => {
     goToProduct();
+    getAllProducts();
   }, []);
 
   const commentVar = { comment, product };
@@ -154,9 +175,24 @@ const Details = () => {
               {productDetails.categories && productDetails.categories.typeName}
             </Item>
             <Item>
-              {productDetails.oppositeProduct
+              {productDetails.isSafeProduct ? "" : (productDetails.oppositeProduct
                 ? productDetails.oppositeProduct.productName
-                : "Add opposite"}
+                : (userStatus==="admin" ? <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="category"
+                  onChange={(e)=>{console.log(e.target.value)}}
+                >
+                  {productMap.map((name, i) => {
+                    if(name.isSafeProduct !== productDetails.isSafeProduct)
+                    {
+                      return <MenuItem value={name._id}>{name.productName}</MenuItem>;
+                    }
+                  })}
+                </Select>
+              </FormControl> : "opposite not found"))}
             </Item>
           </Grid>
           <Grid item xs={12}>

@@ -29,7 +29,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const CreateProduct = () => {
   //uaeState
-  const [categoryType, setCategoryType] = useState("");
+  const [boycott, setBoycott] = useState(false)
+  const [categoryId, setCategoryId] = useState("");
   const [allCategories, setAllCategories] = useState([]);
 
   //goToProduct
@@ -59,6 +60,35 @@ const CreateProduct = () => {
                 add Picture
               </Button>
             </Item>
+            <Item>
+              <FormControlLabel
+                required
+                control={
+                  <Checkbox
+                    onChange={(e) => {
+                      console.log(!e.target.checked);
+                      setBoycott(!e.target.checked);
+                    }}
+                  />
+                }
+                label="boycott"
+              />
+            </Item>
+            <Item>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="category"
+                  onChange={(e)=>{setCategoryId(e.target.value)}}
+                >
+                  {allCategories.map((type, i) => {
+                    return <MenuItem value={type._id}>{type.typeName}</MenuItem>;
+                  })}
+                </Select>
+              </FormControl>
+            </Item>
           </Grid>
           <Grid item xs={8}>
             <Item>
@@ -86,33 +116,6 @@ const CreateProduct = () => {
                 rows={4}
                 required
               />
-            </Item>
-            <Item>
-              <FormControlLabel
-                required
-                control={
-                  <Checkbox
-                    onChange={(e) => {
-                      console.log(!e.target.checked);
-                    }}
-                  />
-                }
-                label="boycott"
-              />
-            </Item>
-            <Item>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">category</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="category"
-                >
-                  {allCategories.map((type, i) => {
-                    return <MenuItem value={i}>{type.typeName}</MenuItem>;
-                  })}
-                </Select>
-              </FormControl>
             </Item>
           </Grid>
         </Grid>

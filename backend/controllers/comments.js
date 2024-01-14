@@ -53,7 +53,7 @@ const deleteCommentById = (req, res) => {
   commentsModel
     .findOneAndDelete({ _id: id, createdBy })
     .then((result) => {
-      //if there is no result than mean the userId in createdBy is not the user who create this comment
+      //if there is no result that mean the userId in createdBy is not the user who create this comment
       if (result) {
         res.status(200).json({
           success: true,

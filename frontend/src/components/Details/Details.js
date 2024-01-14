@@ -4,9 +4,11 @@ import {
   Button,
   CardMedia,
   Grid,
+  IconButton,
   Input,
   Link,
   List,
+  Modal,
   Paper,
   styled,
 } from "@mui/material";
@@ -16,6 +18,7 @@ import { useParams } from "react-router-dom";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import { LoginContext } from "../../App";
+import { Delete } from "@mui/icons-material";
 
 //styled
 const Item = styled(Paper)(({ theme }) => ({
@@ -38,6 +41,7 @@ const Details = () => {
   const [productDetails, setProductDetails] = useState({});
   const [comment, setComment] = useState("");
   const [product, setProduct] = useState("");
+  const [open, setOpen] = useState(false);
 
   //product id from URL
   const { id } = useParams();
@@ -74,6 +78,23 @@ const Details = () => {
     } else {
       console.log("out of IF", comment, product);
     }
+  };
+
+  //deleteComment
+  const deleteComment = (id) => {
+    axios
+        .delete(`http://localhost:5000/comments/search_1/${id}`, {
+          headers: { authorization: `Bearer ${token}` },
+        })
+        .then((result) => {
+          console.log("Done");
+          //! How to filter
+          goToProduct();
+        })
+        .catch((err) => {
+          console.log(id);
+          console.log("error => ", err);
+        });
   };
 
   //useEffect
@@ -121,17 +142,8 @@ const Details = () => {
                 : "Add opposite"}
             </Item>
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={12}>
             <Item>
-              {productDetails.review &&
-                productDetails.review.map((comment, i) => {
-                  console.log(comment);
-                  return (
-                    <>
-                      <p>{comment.createdBy} comment : {comment.comment}</p>
-                    </>
-                  );
-                })}
               <input
                 type="text"
                 placeholder="comment..."
@@ -147,17 +159,24 @@ const Details = () => {
               >
                 Add Comment
               </Button>
-            </Item>
-          </Grid>
-          <Grid item xs={2}>
-            <Item>
-              <Button
-                onClick={() => {
-                  createComment(productDetails._id);
-                }}
-              >
-                Add Comment
-              </Button>
+              {productDetails.review &&
+                productDetails.review.map((comment, i) => {
+                  console.log(comment);
+                  return (
+                    <>
+                      <p>
+                        {comment.createdBy} comment : {comment.comment}{" "}
+                        <IconButton aria-label="delete" size="small">
+                          <Delete
+                            fontSize="inherit"
+                            onClick={() =>deleteComment(comment._id)}
+                            style={{ color: "red" }}
+                          />
+                        </IconButton>
+                      </p>
+                    </>
+                  );
+                })}
             </Item>
           </Grid>
         </Grid>

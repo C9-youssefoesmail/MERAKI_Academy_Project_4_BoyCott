@@ -13,7 +13,8 @@ import {
   styled,
 } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LoginContext } from "../../App";
 
 //styled
 const Item = styled(Paper)(({ theme }) => ({
@@ -28,10 +29,20 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const CreateProduct = () => {
+  
+  //useContext
+  const { token, userId } = useContext(LoginContext);
+
   //uaeState
-  const [boycott, setBoycott] = useState(false)
-  const [categoryId, setCategoryId] = useState("");
   const [allCategories, setAllCategories] = useState([]);
+  const [createdBy, setCreatedBy] = useState(userId)
+  const [isSafeProduct, setIsSafeProduct] = useState(true)
+  const [categories, setCategories] = useState("");
+  const [productImage,setProductImage] = useState("")
+  const [productName,setProductName] = useState("")
+  const [reason, setReason] = useState("")
+  const [oppositeProduct, setOppositeProduct] = useState("")
+  const [link, setLink] = useState("")
 
   //goToProduct
   const getCategories = () => {
@@ -45,10 +56,32 @@ const CreateProduct = () => {
       });
   };
 
+  //createNewProduct
+  const createNewProduct = () => {
+    if(createdBy, isSafeProduct !== null, categories, productImage, productName, reason, link){
+      axios
+        .post(`http://localhost:5000/products`, newProduct, {
+          headers: { authorization: `Bearer ${token}` },
+        })
+        .then((result) => {
+          console.log(result.data);
+        })
+        .catch((err) => {
+          console.log("err: ", err);
+        });
+    }
+    else
+    {
+      console.log("something is missed");
+    }
+  }
+
   //useEffect
   useEffect(() => {
     getCategories();
   }, []);
+
+  const newProduct = {createdBy, isSafeProduct, categories, productImage, productName, reason, link}
 
   return (
     <div>
@@ -56,9 +89,14 @@ const CreateProduct = () => {
         <Grid container spacing={0}>
           <Grid item xs={4}>
             <Item>
-              <Button sx={{ height: 400 }} required>
-                add Picture
-              </Button>
+            <TextField
+                id="outlined-multiline-static"
+                label="add the URL picture"
+                multiline
+                rows={4}
+                required
+                onChange={(e)=>{setProductImage(e.target.value)}}
+              />
             </Item>
             <Item>
               <FormControlLabel
@@ -67,7 +105,7 @@ const CreateProduct = () => {
                   <Checkbox
                     onChange={(e) => {
                       console.log(!e.target.checked);
-                      setBoycott(!e.target.checked);
+                      setIsSafeProduct(!e.target.checked);
                     }}
                   />
                 }
@@ -81,7 +119,7 @@ const CreateProduct = () => {
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   label="category"
-                  onChange={(e)=>{setCategoryId(e.target.value)}}
+                  onChange={(e)=>{setCategories(e.target.value)}}
                 >
                   {allCategories.map((type, i) => {
                     return <MenuItem value={type._id}>{type.typeName}</MenuItem>;
@@ -89,6 +127,14 @@ const CreateProduct = () => {
                 </Select>
               </FormControl>
             </Item>
+            <Button
+                onClick={() => {
+                  createNewProduct()
+                  console.log(" createdBy =>",createdBy," isSafeProduct =>", isSafeProduct," categories =>",categories , "productImage =>", productImage , " productName =>" , productName , " reason =>", reason, " oppositeProduct =>", oppositeProduct, " link =>",link)
+                }}
+              >
+                Add
+              </Button>
           </Grid>
           <Grid item xs={8}>
             <Item>
@@ -97,6 +143,7 @@ const CreateProduct = () => {
                 label="product name"
                 multiline
                 required
+                onChange={(e)=>{setProductName(e.target.value)}}
               />
             </Item>
             <Item>
@@ -106,6 +153,7 @@ const CreateProduct = () => {
                 multiline
                 rows={4}
                 required
+                onChange={(e)=>{setReason(e.target.value)}}
               />
             </Item>
             <Item>
@@ -115,6 +163,7 @@ const CreateProduct = () => {
                 multiline
                 rows={4}
                 required
+                onChange={(e)=>{setLink(e.target.value)}}
               />
             </Item>
           </Grid>

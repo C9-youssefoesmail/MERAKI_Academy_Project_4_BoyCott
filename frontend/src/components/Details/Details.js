@@ -59,6 +59,7 @@ const Details = () => {
       .then((result) => {
         setProduct(id);
         setProductDetails(result.data._product[0]);
+        console.log(result.data._product[0].review);
       })
       .catch((err) => {
         console.log("err: ", err);
@@ -219,7 +220,7 @@ const Details = () => {
                   return (
                     <>
                       <p>
-                        {comment.createdBy} comment : {comment.comment}{" "}
+                        {comment.createdBy.userName} commented: {comment.comment}{" "}
                         <IconButton aria-label="delete" size="small">
                           <Delete
                             fontSize="inherit"

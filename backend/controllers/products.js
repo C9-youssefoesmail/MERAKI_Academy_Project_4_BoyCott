@@ -81,11 +81,12 @@ const getProductById = (req, res) => {
 
   productModel
     .find({ _id })
+    .populate("oppositeProduct", "-_id productName")
     .populate("categories", "-_id typeName")
     .populate({
       //searching for the user (schema) info from the createdBy (createdBy is the _id od the users) path in the review (review is the _id of comments)
-      path:"review",
-      populate: {path : "createdBy"}
+      path: "review",
+      populate: { path: "createdBy" },
     })
     .then((result) => {
       res.status(200).json({

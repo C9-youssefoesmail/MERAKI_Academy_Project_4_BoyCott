@@ -15,11 +15,12 @@ import {
   Paper,
   Select,
   TextField,
+  Tooltip,
   styled,
 } from "@mui/material";
 import "./style.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import { LoginContext } from "../../App";
@@ -42,11 +43,15 @@ const Details = () => {
   //useContext
   const { token, userStatus } = useContext(LoginContext);
 
+  //useNavigate
+  const navigate = useNavigate();
+
   //useState
   const [productDetails, setProductDetails] = useState({});
   const [comment, setComment] = useState("");
   const [product, setProduct] = useState("");
-  const [productMap, setProductMap] = useState([])
+  const [productMap, setProductMap] = useState([]);
+  const [oppositeProduct, setOppositeProduct] = useState("");
 
   //product id from URL
   const { id } = useParams();
@@ -71,11 +76,24 @@ const Details = () => {
     axios
       .get("http://localhost:5000/products")
       .then((result) => {
-        setProductMap(result.data)
+        setProductMap(result.data);
         console.log(result.data);
       })
       .catch((err) => {
         console.log("error in getAllProducts function");
+      });
+  };
+
+  //deleteProduct
+  const deleteProduct = () => {
+    axios
+      .delete(`http://localhost:5000/products/${id}`)
+      .then((result) => {
+        console.log("deleted");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log("error in deleteProduct function");
       });
   };
 
@@ -102,38 +120,53 @@ const Details = () => {
   //deleteComment
   const deleteComment = (id) => {
     axios
-        .delete(`http://localhost:5000/comments/search_1/${id}`, {
-          headers: { authorization: `Bearer ${token}` },
-        })
-        .then((result) => {
-          console.log("Done");
-          //! How to filter
-          goToProduct();
-        })
-        .catch((err) => {
-          console.log(id, "deleteComment =>",userStatus);
-          console.log("error => ", err);
-        });
+      .delete(`http://localhost:5000/comments/search_1/${id}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        console.log("Done");
+        //! How to filter
+        goToProduct();
+      })
+      .catch((err) => {
+        console.log(id, "deleteComment =>", userStatus);
+        console.log("error => ", err);
+      });
   };
 
   //deleteCommentFromAdmin
   const deleteCommentFromAdmin = (id) => {
     axios
-        .delete(`http://localhost:5000/comments/search_2/${id}`, {
-          headers: { authorization: `Bearer ${token}` },
-        })
-        .then((result) => {
-          console.log("Done");
-          //! How to filter
-          goToProduct();
-        })
-        .catch((err) => {
-          console.log(id,"deleteCommentFromAdmin =>",userStatus);
-          console.log("error => ", err);
-        });
+      .delete(`http://localhost:5000/comments/search_2/${id}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        console.log("Done");
+        //! How to filter
+        goToProduct();
+      })
+      .catch((err) => {
+        console.log(id, "deleteCommentFromAdmin =>", userStatus);
+        console.log("error => ", err);
+      });
   };
 
-  //!---------------update product
+  //updateProduct
+  const updateProduct = () => {
+    console.log("updateProduct Function");
+    if(newOpposite !== "")
+    {
+      axios
+      .put(`http://localhost:5000/products/${id}` , newOpposite)
+      .then((result) => {
+        console.log("Done");
+      })
+      .catch((err) => {
+        console.log("error => ", err);
+      });
+    }
+    
+  };
 
   //useEffect
   useEffect(() => {
@@ -142,6 +175,7 @@ const Details = () => {
   }, []);
 
   const commentVar = { comment, product };
+  const newOpposite = { oppositeProduct };
 
   //return of the component
   return (
@@ -176,37 +210,77 @@ const Details = () => {
               {productDetails.categories && productDetails.categories.typeName}
             </Item>
             <Item>
-              {productDetails.isSafeProduct ? "" : (productDetails.oppositeProduct
-                ? productDetails.oppositeProduct.productName
-                : (userStatus==="admin" ? <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">category</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="category"
-                  onChange={(e)=>{console.log(e.target.value)}}
-                >
-                  {productMap.map((name, i) => {
-                    if(name.isSafeProduct !== productDetails.isSafeProduct)
-                    {
-                      return <MenuItem value={name._id}>{name.productName}</MenuItem>;
-                    }
-                  })}
-                </Select>
-              </FormControl> : "opposite not found"))}
+              {productDetails.isSafeProduct ? (
+                ""
+              ) : productDetails.oppositeProduct ? (
+                productDetails.oppositeProduct.productName
+              ) : userStatus === "admin" ? (
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    opposite
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="opposite"
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setOppositeProduct(e.target.value);
+                    }}
+                  >
+                    {productMap.map((name, i) => {
+                      if (name.isSafeProduct !== productDetails.isSafeProduct) {
+                        return (
+                          <MenuItem value={name._id}>
+                            {name.productName}
+                          </MenuItem>
+                        );
+                      }
+                    })}
+                  </Select>
+                </FormControl>
+              ) : (
+                "opposite not found"
+              )}
             </Item>
+            {userStatus === "admin" && (
+              <Item>
+                <Button
+                variant="contained" color="error"
+                  onClick={() => {
+                    deleteProduct();
+                    console.log("Delete");
+                  }}
+                >
+                  delete
+                </Button>
+              {(!productDetails.oppositeProduct && !productDetails.isSafeProduct) && <Button
+              variant="contained" color="success"
+                sx={{
+                  marginLeft: "10px",
+                }}
+                onClick={() => {
+                  updateProduct();
+                  console.log("Update");
+                  window.location.reload()
+                }}
+              >
+                update
+              </Button>}
+              </Item>
+            )}
           </Grid>
           <Grid item xs={12}>
             <Item>
               <TextField
-              id="outlined-textarea"
-              label="comment..."
-              multiline
-              onChange={(e) => {
+                id="outlined-textarea"
+                label="comment..."
+                multiline
+                onChange={(e) => {
                   setComment(e.target.value);
                   console.log(comment, token);
                 }}
-            />
+              />
               <Button
                 onClick={() => {
                   createComment(productDetails._id);
@@ -220,11 +294,16 @@ const Details = () => {
                   return (
                     <>
                       <p>
-                        {comment.createdBy.userName} commented: {comment.comment}{" "}
+                        {comment.createdBy.userName} commented:{" "}
+                        {comment.comment}{" "}
                         <IconButton aria-label="delete" size="small">
                           <Delete
                             fontSize="inherit"
-                            onClick={() =>{userStatus==="admin" ? deleteCommentFromAdmin(comment._id) : deleteComment(comment._id)}}
+                            onClick={() => {
+                              userStatus === "admin"
+                                ? deleteCommentFromAdmin(comment._id)
+                                : deleteComment(comment._id);
+                            }}
                             style={{ color: "red" }}
                           />
                         </IconButton>

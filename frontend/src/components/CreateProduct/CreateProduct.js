@@ -45,6 +45,7 @@ const CreateProduct = () => {
   const [reason, setReason] = useState("")
   const [oppositeProduct, setOppositeProduct] = useState("")
   const [link, setLink] = useState("")
+  const [message, setMessage] = useState(false)
 
   //tot ==> q4e4jqhi
   //goToProduct
@@ -68,6 +69,7 @@ const CreateProduct = () => {
         })
         .then((result) => {
           console.log(result.data);
+          setMessage(true)
         })
         .catch((err) => {
           console.log("err: ", err);
@@ -84,19 +86,20 @@ const CreateProduct = () => {
     getCategories();
   }, []);
 
-  const newProduct = {createdBy, isSafeProduct, categories, productImage, productName, reason, link}
+  const newProduct = {createdBy, isSafeProduct, categories, productImage:url, productName, reason, link}
 
   const uploadImage = () => {
     const data = new FormData()
   data.append("file", productImage)
   data.append("upload_preset", "q4e4jqhi")
   data.append("cloud_name","dc4vljqsd")
-  fetch("https://api.cloudinary.com/v1_1/dc4vljqsd/productImage/upload",{
+  fetch("https://api.cloudinary.com/v1_1/dc4vljqsd/image/upload",{
     method: "post",
     body: data
   }).then(resp => resp.json())
   .then(data => {
-    setUrl(data.url)
+    console.log(data.url);
+    setUrl(data.url);
   })
   .catch(err => console.log(err))
   }
@@ -140,14 +143,17 @@ const CreateProduct = () => {
                 </Select>
               </FormControl>
             </Item>
-            <Button
+            {!message && <Button
                 onClick={() => {
                   createNewProduct()
                   console.log(" createdBy =>",createdBy," isSafeProduct =>", isSafeProduct," categories =>",categories , "productImage =>", productImage , " productName =>" , productName , " reason =>", reason, " oppositeProduct =>", oppositeProduct, " link =>",link)
                 }}
               >
                 Add
-              </Button>
+              </Button>}
+            {message && <Item sx={{backgroundColor:"green"}}>
+              added success
+            </Item>}
           </Grid>
           <Grid item xs={8}>
             <Item>

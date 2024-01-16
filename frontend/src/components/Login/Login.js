@@ -3,12 +3,20 @@ import React, { useContext, useState } from "react";
 import { LoginContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import { FilledInput, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
+import {
+  Alert,
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 //the Login Function
 const Login = () => {
-
   //password state
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -31,6 +39,7 @@ const Login = () => {
 
   //handleLogin
   const handleLogin = () => {
+    console.log("handleLogin");
     if ((email, password)) {
       axios
         .post("http://localhost:5000/users/login", userInfo) //userInfo
@@ -52,7 +61,7 @@ const Login = () => {
           setMessage(err.response.data.message);
         });
     } else {
-      setMessage("plz add email and password");
+      setMessage(<Alert severity="error">please enter your email and password.</Alert>);
     }
   };
 
@@ -60,40 +69,59 @@ const Login = () => {
   return (
     <div className="Login">
       <p>Login:</p>
-      <TextField id="outlined-textarea" label="email" multiline required onChange={(e) => {
+      <TextField
+        id="outlined-textarea"
+        label="email"
+        multiline
+        required
+        onChange={(e) => {
           setEmail(e.target.value);
-        }}/>
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password" >Password</InputLabel>
-          <OutlinedInput
-          onChange={(e)=>{
+        }}
+      />
+      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+        <OutlinedInput
+          onChange={(e) => {
             setPassword(e.target.value);
           }}
-            id="outlined-adornment-password"
-            type={showPassword ? 'text' : 'password'}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-      <button
-        className="button"
-        onClick={() => {
-          handleLogin();
-        }}
-      >
-        Login
-      </button>
+          id="outlined-adornment-password"
+          type={showPassword ? "text" : "password"}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Password"
+        />
+      </FormControl>
+      <div>
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => {
+            handleLogin();
+          }}
+        >
+          Login
+        </Button>
+        <Button
+          variant="contained"
+          size="small"
+          sx={{ marginLeft: "10px" }}
+          onClick={() => {
+            navigate("/Register");
+          }}
+        >
+          i don't have account
+        </Button>
+      </div>
       {message ? <p>{message}</p> : ""}
     </div>
   );

@@ -2,12 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
+import {
+  Alert,
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 //Register
 const Register = () => {
-  
   //password state
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -47,7 +55,7 @@ const Register = () => {
           setMesage(err.response.data.message);
         });
     } else {
-      setMesage("plz inter your email or passowrd or first name");
+      setMesage(<Alert severity="error">please enter your user name, email and password.</Alert>);
     }
   };
 
@@ -56,20 +64,34 @@ const Register = () => {
     <>
       <div className="Register">
         <p>Register:</p>
-        <TextField id="outlined-textarea" label="user name" multiline required onChange={(e) => {
-          setUserName(e.target.value);
-        }}/>
-        <TextField id="outlined-textarea" label="email" multiline required onChange={(e) => {
-          setEmail(e.target.value);
-        }}/>
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password" >Password</InputLabel>
-          <OutlinedInput
-          onChange={(e)=>{
-            setPassword(e.target.value);
+        <TextField
+          id="outlined-textarea"
+          label="user name"
+          multiline
+          required
+          onChange={(e) => {
+            setUserName(e.target.value);
           }}
+        />
+        <TextField
+          id="outlined-textarea"
+          label="email"
+          multiline
+          required
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            Password
+          </InputLabel>
+          <OutlinedInput
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             id="outlined-adornment-password"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -85,14 +107,27 @@ const Register = () => {
             label="Password"
           />
         </FormControl>
-        <button
-          className="button"
-          onClick={() => {
-            handleRegister();
-          }}
-        >
-          Register
-        </button>
+        <div>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => {
+              handleRegister();
+            }}
+          >
+            Register
+          </Button>
+          <Button
+            sx={{ marginLeft: "10px" }}
+            variant="contained"
+            size="small"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            i have account
+          </Button>
+        </div>
         {mesage ? <p>{mesage}</p> : ""}
       </div>
     </>

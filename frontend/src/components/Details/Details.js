@@ -197,7 +197,7 @@ const Details = () => {
             <Item>
               {productDetails.reason}
               <br />
-              <Link href={productDetails.link}>Link</Link>
+              <Link target="_blank" href={productDetails.link}>Link</Link>
             </Item>
             <Item>
               {productDetails.isSafeProduct ? (

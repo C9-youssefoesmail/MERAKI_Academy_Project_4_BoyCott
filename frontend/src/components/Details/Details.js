@@ -26,38 +26,40 @@ import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import { LoginContext } from "../../App";
 import { Delete } from "@mui/icons-material";
 
-//styled
+//!----------------------styled
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
-  marginTop: "10%",
-  marginLeft: "10%",
-  marginRight: "10%",
+  marginTop: "1%",
+  marginLeft: "1%",
+  marginRight: "1%",
+  backgroundColor: "rgba(193, 233, 186, 0.222)"
 }));
 
-//Details function
+//!----------------------Details function
 const Details = () => {
-  //useContext
+
+  //!----------------------useContext
   const { token, userStatus } = useContext(LoginContext);
 
-  //useNavigate
+  //!----------------------useNavigate
   const navigate = useNavigate();
 
-  //useState
+  //!----------------------useState
   const [productDetails, setProductDetails] = useState({});
   const [comment, setComment] = useState("");
   const [product, setProduct] = useState("");
   const [productMap, setProductMap] = useState([]);
   const [oppositeProduct, setOppositeProduct] = useState("");
 
-  //product id from URL
+  //!----------------------product id from URL
   const { id } = useParams();
   console.log(id);
 
-  //goToProduct
+  //!----------------------goToProduct
   const goToProduct = () => {
     axios
       .get(`http://localhost:5000/products/search_1/${id}`)
@@ -71,7 +73,7 @@ const Details = () => {
       });
   };
 
-  //getAllProducts
+  //!----------------------getAllProducts
   const getAllProducts = () => {
     axios
       .get("http://localhost:5000/products")
@@ -84,7 +86,7 @@ const Details = () => {
       });
   };
 
-  //deleteProduct
+  //!----------------------deleteProduct
   const deleteProduct = () => {
     axios
       .delete(`http://localhost:5000/products/${id}`)
@@ -97,7 +99,7 @@ const Details = () => {
       });
   };
 
-  //createComment
+  //!----------------------createComment
   const createComment = (id) => {
     console.log(id);
     if (comment && product) {
@@ -117,7 +119,7 @@ const Details = () => {
     }
   };
 
-  //deleteComment
+  //!----------------------deleteComment
   const deleteComment = (id) => {
     axios
       .delete(`http://localhost:5000/comments/search_1/${id}`, {
@@ -134,7 +136,7 @@ const Details = () => {
       });
   };
 
-  //deleteCommentFromAdmin
+  //!----------------------deleteCommentFromAdmin
   const deleteCommentFromAdmin = (id) => {
     axios
       .delete(`http://localhost:5000/comments/search_2/${id}`, {
@@ -151,24 +153,22 @@ const Details = () => {
       });
   };
 
-  //updateProduct
+  //!----------------------updateProduct
   const updateProduct = () => {
     console.log("updateProduct Function");
-    if(newOpposite !== "")
-    {
+    if (newOpposite !== "") {
       axios
-      .put(`http://localhost:5000/products/${id}` , newOpposite)
-      .then((result) => {
-        console.log("Done");
-      })
-      .catch((err) => {
-        console.log("error => ", err);
-      });
+        .put(`http://localhost:5000/products/${id}`, newOpposite)
+        .then((result) => {
+          console.log("Done");
+        })
+        .catch((err) => {
+          console.log("error => ", err);
+        });
     }
-    
   };
 
-  //useEffect
+  //!----------------------useEffect
   useEffect(() => {
     goToProduct();
     getAllProducts();
@@ -177,9 +177,9 @@ const Details = () => {
   const commentVar = { comment, product };
   const newOpposite = { oppositeProduct };
 
-  //return of the component
+  //!----------------------return of the component
   return (
-    <div>
+    <div className="details">
       <Box>
         <Grid container spacing={0}>
           <Grid item xs={4}>
@@ -193,11 +193,17 @@ const Details = () => {
             </Item>
           </Grid>
           <Grid item xs={8}>
-            <Item>{productDetails.productName}</Item>
             <Item>
+              <p>product name: </p>
+              {productDetails.productName}
+            </Item>
+            <Item>
+              <p>reason: </p>
               {productDetails.reason}
               <br />
-              <Link target="_blank" href={productDetails.link}>Link</Link>
+              <Link target="_blank" href={productDetails.link}>
+                Link
+              </Link>
             </Item>
             <Item>
               {productDetails.isSafeProduct ? (
@@ -207,9 +213,11 @@ const Details = () => {
               )}
             </Item>
             <Item>
+              <p>Type: </p>
               {productDetails.categories && productDetails.categories.typeName}
             </Item>
             <Item>
+              <p>opposite product: </p>
               {productDetails.isSafeProduct ? (
                 ""
               ) : productDetails.oppositeProduct ? (
@@ -246,7 +254,8 @@ const Details = () => {
             {userStatus === "admin" && (
               <Item>
                 <Button
-                variant="contained" color="error"
+                  variant="contained"
+                  color="error"
                   onClick={() => {
                     deleteProduct();
                     console.log("Delete");
@@ -254,25 +263,30 @@ const Details = () => {
                 >
                   delete
                 </Button>
-              {(!productDetails.oppositeProduct && !productDetails.isSafeProduct) && <Button
-              variant="contained" color="success"
-                sx={{
-                  marginLeft: "10px",
-                }}
-                onClick={() => {
-                  updateProduct();
-                  console.log("Update");
-                  window.location.reload()
-                }}
-              >
-                update
-              </Button>}
+                {!productDetails.oppositeProduct &&
+                  !productDetails.isSafeProduct && (
+                    <Button
+                      variant="contained"
+                      color="success"
+                      sx={{
+                        marginLeft: "10px",
+                      }}
+                      onClick={() => {
+                        updateProduct();
+                        console.log("Update");
+                        window.location.reload();
+                      }}
+                    >
+                      update
+                    </Button>
+                  )}
               </Item>
             )}
           </Grid>
           <Grid item xs={12}>
             <Item>
               <TextField
+              sx={{display: "flex"}}
                 id="outlined-textarea"
                 label="comment..."
                 multiline
@@ -282,6 +296,10 @@ const Details = () => {
                 }}
               />
               <Button
+                className="add"
+                sx={{ marginLeft: "10px", marginTop: "1%" }}
+                variant="contained"
+                size="small"
                 onClick={() => {
                   createComment(productDetails._id);
                 }}

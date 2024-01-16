@@ -16,6 +16,7 @@ import {
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../App";
+import "./style.css";
 
 //!----------------styled
 const Item = styled(Paper)(({ theme }) => ({
@@ -24,9 +25,11 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
-  marginTop: "10%",
-  marginLeft: "10%",
-  marginRight: "10%",
+  marginTop: "1%",
+  marginLeft: "3%",
+  marginRight: "3%",
+  marginBottom: "4%",
+  backgroundColor: "rgba(193, 233, 186, 0.222)"
 }));
 
 const CreateProduct = () => {
@@ -123,9 +126,9 @@ const CreateProduct = () => {
   };
 
   return (
-    <div>
+    <div className="createProduct">
       <Box>
-        <Grid container spacing={0}>
+        <Grid container spacing={0} className="main">
           <Grid item xs={4}>
             <Item>
               <input

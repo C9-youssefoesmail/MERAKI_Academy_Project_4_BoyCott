@@ -34,7 +34,7 @@ const Nav = () => {
   return (
     <>
       <AppBar position="sticky">
-        <StyledToolbar>
+        <StyledToolbar className="navbar">
           <Typography>
             <Link to="/">
               <Button variant="contained">Home</Button>

@@ -14,16 +14,16 @@ import {
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 
-//productItems function
+//!----------------------productItems function
 const ProductItems = () => {
 
-  //useState
+  //!----------------------useState
   const [products, setProducts] = useState([]);
 
-  //useNavigate
+  //!----------------------useNavigate
   const navigate = useNavigate();
 
-  //getAllProducts
+  //!----------------------getAllProducts
   const getAllProducts = () => {
     axios
       .get("http://localhost:5000/products")
@@ -34,7 +34,7 @@ const ProductItems = () => {
       .catch((err) => {});
   };
 
-  //goToProduct page
+  //!----------------------goToProduct page
   const goToProduct = (id) => {
     axios
       .get(`http://localhost:5000/products/search_1/${id}`)
@@ -46,12 +46,12 @@ const ProductItems = () => {
       });
   };
 
-  //useEffect
+  //!----------------------useEffect
   useEffect(() => {
     getAllProducts();
   }, []);
 
-  //return the component
+  //!----------------------return the component
   return (
     <div className="Products">
       {products.map((productItem, i) => {

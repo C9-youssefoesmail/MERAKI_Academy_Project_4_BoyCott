@@ -6,16 +6,13 @@ import {
   FormControl,
   Grid,
   IconButton,
-  Input,
   InputLabel,
   Link,
   List,
   MenuItem,
-  Modal,
   Paper,
   Select,
   TextField,
-  Tooltip,
   styled,
 } from "@mui/material";
 import "./style.css";
@@ -36,7 +33,7 @@ const Item = styled(Paper)(({ theme }) => ({
   marginTop: "1%",
   marginLeft: "1%",
   marginRight: "1%",
-  backgroundColor: "rgba(193, 233, 186, 0.222)"
+  backgroundColor: "rgba(193, 233, 186, 0.222)",
 }));
 
 //!----------------------Details function
@@ -183,7 +180,7 @@ const Details = () => {
       <Box>
         <Grid container spacing={0}>
           <Grid item xs={4}>
-            <Item>
+            <Item elevation={3}>
               <List>
                 <CardMedia
                   component="img"
@@ -193,11 +190,11 @@ const Details = () => {
             </Item>
           </Grid>
           <Grid item xs={8}>
-            <Item>
+            <Item elevation={3}>
               <p>product name: </p>
               {productDetails.productName}
             </Item>
-            <Item>
+            <Item elevation={3}>
               <p>reason: </p>
               {productDetails.reason}
               <br />
@@ -205,18 +202,18 @@ const Details = () => {
                 Link
               </Link>
             </Item>
-            <Item>
+            <Item elevation={3}>
               {productDetails.isSafeProduct ? (
                 <ThumbUpAltIcon />
               ) : (
                 <ThumbDownAltIcon />
               )}
             </Item>
-            <Item>
+            <Item elevation={3}>
               <p>Type: </p>
               {productDetails.categories && productDetails.categories.typeName}
             </Item>
-            <Item>
+            <Item elevation={3}>
               <p>opposite product: </p>
               {productDetails.isSafeProduct ? (
                 ""
@@ -252,7 +249,7 @@ const Details = () => {
               )}
             </Item>
             {userStatus === "admin" && (
-              <Item>
+              <Item elevation={3}>
                 <Button
                   variant="contained"
                   color="error"
@@ -284,7 +281,7 @@ const Details = () => {
             )}
           </Grid>
           <Grid item xs={12}>
-            <Item>
+            <Item elevation={3}>
               <TextField
               sx={{display: "flex"}}
                 id="outlined-textarea"

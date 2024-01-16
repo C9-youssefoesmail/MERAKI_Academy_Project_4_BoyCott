@@ -65,7 +65,7 @@ const ProductItems = () => {
           >
             <List>
               <ListItem disablePadding>
-                <Card>
+                <Card elevation={3}>
                   <CardMedia
                     sx={{ height: 200 }}
                     image={productItem.productImage}

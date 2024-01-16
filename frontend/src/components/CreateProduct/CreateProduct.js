@@ -130,14 +130,14 @@ const CreateProduct = () => {
       <Box>
         <Grid container spacing={0} className="main">
           <Grid item xs={4}>
-            <Item>
+            <Item elevation={3}>
               <input
                 type="file"
                 onChange={(e) => setProductImage(e.target.files[0])}
               ></input>
               <button onClick={uploadImage}>Upload</button>
             </Item>
-            <Item>
+            <Item elevation={3}>
               <FormControlLabel
                 required
                 control={
@@ -151,7 +151,7 @@ const CreateProduct = () => {
                 label="boycott"
               />
             </Item>
-            <Item>
+            <Item elevation={3}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">category</InputLabel>
                 <Select
@@ -171,7 +171,7 @@ const CreateProduct = () => {
               </FormControl>
             </Item>
             {!message && (
-              <Button
+              <Button 
                 variant="contained"
                 size="small"
                 sx={{ marginTop: "20px" }}
@@ -212,7 +212,7 @@ const CreateProduct = () => {
             )}
           </Grid>
           <Grid item xs={8}>
-            <Item>
+            <Item elevation={3}>
               <div>
                 <TextField
                 sx={{margin: "10px"}}
@@ -230,7 +230,7 @@ const CreateProduct = () => {
                   id="filled-multiline-static"
                   label="reason"
                   multiline
-                  rows={4}
+                  rows={8}
                   variant="filled"
                   onChange={(e) => {
                     setReason(e.target.value);
@@ -241,7 +241,7 @@ const CreateProduct = () => {
                   id="filled-multiline-static"
                   label="link"
                   multiline
-                  rows={4}
+                  rows={8}
                   variant="filled"
                   onChange={(e) => {
                     setLink(e.target.value);

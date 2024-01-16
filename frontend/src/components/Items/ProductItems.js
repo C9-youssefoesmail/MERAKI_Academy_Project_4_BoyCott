@@ -35,12 +35,10 @@ const ProductItems = () => {
   };
 
   //goToProduct page
-  const goToProduct = (id, name) => {
-    console.log(id, name);
+  const goToProduct = (id) => {
     axios
       .get(`http://localhost:5000/products/search_1/${id}`)
       .then((result) => {
-
         navigate(`/${id}/Details`);
       })
       .catch((err) => {
@@ -69,7 +67,7 @@ const ProductItems = () => {
               <ListItem disablePadding>
                 <Card>
                   <CardMedia
-                    sx={{ height: 140 }}
+                    sx={{ height: 200 }}
                     image={productItem.productImage}
                     title={productItem.productName}
                   />
@@ -88,7 +86,7 @@ const ProductItems = () => {
                     <Button
                       size="small"
                       onClick={() => {
-                        goToProduct(productItem._id, productItem);
+                        goToProduct(productItem._id);
                       }}
                     >
                       read more

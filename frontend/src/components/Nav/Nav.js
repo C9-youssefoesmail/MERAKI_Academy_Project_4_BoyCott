@@ -1,19 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   AppBar,
   Box,
   Button,
   ButtonGroup,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  Switch,
   Toolbar,
   Typography,
   styled,
 } from "@mui/material";
-import { useNavigate, Link } from "react-router-dom";
-import { ModeNight } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import { LoginContext } from "../../App";
 import "./style.css";
 
@@ -33,9 +28,6 @@ const Nav = () => {
   //!---------------useContext
   const { isLoggedIn, setToken, setIsLoggedIn, setUserStatus, userStatus } =
     useContext(LoginContext);
-
-  //!---------------useState
-  const [open, setOpen] = useState(false);
 
   //const navigate = useNavigate()
   //!--------------return

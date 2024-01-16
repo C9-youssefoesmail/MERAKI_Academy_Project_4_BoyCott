@@ -7,7 +7,6 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Grid,
   List,
   ListItem,
   Typography,

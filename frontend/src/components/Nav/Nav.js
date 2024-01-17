@@ -96,7 +96,7 @@ const Nav = () => {
                   <Link to="/CreateProduct">
                     <Button>Create Product</Button>
                   </Link>
-                ) : null}
+                ) : <Link to="/contactUs"><Button>contact us</Button></Link>}
                 <Link
                   to="/"
                   onClick={() => {
@@ -116,6 +116,7 @@ const Nav = () => {
           ) : (
             <Icons>
               <ButtonGroup variant="contained">
+              <Link to="/contactUs"><Button>contact us</Button></Link>
                 <Link to="/Login">
                   <Button>Login</Button>
                 </Link>

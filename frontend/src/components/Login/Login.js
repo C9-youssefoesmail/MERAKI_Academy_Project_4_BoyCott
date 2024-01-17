@@ -69,7 +69,7 @@ const Login = () => {
   //return
   return (
     <div className="Login">
-      <Card className="loginCard">
+      <Card className="loginCard" elevation={4}>
         <p>Login:</p>
       <div className="email">
       <TextField

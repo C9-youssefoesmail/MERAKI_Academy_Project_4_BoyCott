@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Alert,
   Button,
+  Card,
   FormControl,
   IconButton,
   InputAdornment,
@@ -62,6 +63,7 @@ const Register = () => {
   //return
   return (
     <>
+    <Card className="registerCard" elevation={4}>
       <div className="Register">
         <p>Register:</p>
         <TextField
@@ -130,6 +132,8 @@ const Register = () => {
         </div>
         {mesage ? <p>{mesage}</p> : ""}
       </div>
+    </Card>
+      
     </>
   );
 };

@@ -128,7 +128,7 @@ const CreateProduct = () => {
   return (
     <div className="createProduct">
       <Box>
-        <Grid container spacing={0} className="main">
+        <Grid container spacing={0} >
           <Grid item xs={4}>
             <Item elevation={3}>
               <input

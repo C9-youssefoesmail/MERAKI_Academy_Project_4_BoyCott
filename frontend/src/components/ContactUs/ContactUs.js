@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { LoginContext } from "../../App";
 import axios from "axios";
-import { Alert, Button, TextField } from "@mui/material";
+import { Alert, Button, Card, TextField } from "@mui/material";
 
 const ContactUs = () => {
   //!----------------------useContext
@@ -67,7 +67,8 @@ const ContactUs = () => {
 
   return (
     <div className="main">
-      <div className="Contact">Contact Us:</div>
+      <Card elevation={4}>
+        <div className="Contact">Contact Us:</div>
       {userId ? (
         <div className="user">
           <p>User name: {name}</p>
@@ -112,7 +113,7 @@ const ContactUs = () => {
           }}
         />
       </div>
-      <div>
+      <div className="bb">
         {hide === true ? (
           ""
         ) : (
@@ -128,6 +129,8 @@ const ContactUs = () => {
         )}
         {message ? <div className="message">{message}</div> : ""}
       </div>
+      </Card>
+      
     </div>
   );
 };

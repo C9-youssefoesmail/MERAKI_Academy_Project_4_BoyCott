@@ -40,9 +40,7 @@ const Nav = () => {
     setIsLoggedIn,
     setUserStatus,
     userStatus,
-    isTrue,
     setIsTrue,
-    isFalse,
     setIsFalse,
   } = useContext(LoginContext);
 

@@ -8,6 +8,7 @@ import Nav from "./components/Nav/Nav";
 import Register from "./components/Register/Register";
 import Details from "./components/Details/Details";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
+import ContactUs from "./components/ContactUs/ContactUs";
 
 //createContext
 export const LoginContext = createContext();
@@ -57,6 +58,7 @@ function App() {
               <Route path="/Login" element={<Login />}></Route>
               <Route path="/" element={<ProductItems />}></Route>
               <Route path="/CreateProduct" element={<CreateProduct />}></Route>
+              <Route path="/contactUs" element={<ContactUs/>}></Route>
             </Routes>
           </Box>
         </Container>

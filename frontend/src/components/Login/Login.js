@@ -6,6 +6,7 @@ import "./style.css";
 import {
   Alert,
   Button,
+  Card,
   FormControl,
   IconButton,
   InputAdornment,
@@ -68,7 +69,9 @@ const Login = () => {
   //return
   return (
     <div className="Login">
-      <p>Login:</p>
+      <Card className="loginCard">
+        <p>Login:</p>
+      <div className="email">
       <TextField
         id="outlined-textarea"
         label="email"
@@ -78,6 +81,8 @@ const Login = () => {
           setEmail(e.target.value);
         }}
       />
+      </div>
+      <div className="pass">
       <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
@@ -101,6 +106,7 @@ const Login = () => {
           label="Password"
         />
       </FormControl>
+      </div>
       <div>
         <Button
           variant="contained"
@@ -123,6 +129,8 @@ const Login = () => {
         </Button>
       </div>
       {message ? <p>{message}</p> : ""}
+      </Card>
+      
     </div>
   );
 };

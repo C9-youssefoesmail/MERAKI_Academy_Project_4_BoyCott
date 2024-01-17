@@ -8,3 +8,17 @@
 .button{
     width: 180px;
 }
+
+.loginCard{
+    margin-top: 5%;
+    padding: 3% 2%;
+    gap: 20px;
+}
+
+.email{
+    margin: 6% 1%;
+}
+
+.pass{
+    margin: 6% 1%;
+}

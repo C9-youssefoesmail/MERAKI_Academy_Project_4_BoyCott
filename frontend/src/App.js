@@ -9,6 +9,7 @@ import Register from "./components/Register/Register";
 import Details from "./components/Details/Details";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import ContactUs from "./components/ContactUs/ContactUs";
+import Messages from "./components/Messages/Messages";
 
 //createContext
 export const LoginContext = createContext();
@@ -59,6 +60,7 @@ function App() {
               <Route path="/" element={<ProductItems />}></Route>
               <Route path="/CreateProduct" element={<CreateProduct />}></Route>
               <Route path="/contactUs" element={<ContactUs/>}></Route>
+              <Route path="/messages" element={<Messages/>}></Route>
             </Routes>
           </Box>
         </Container>

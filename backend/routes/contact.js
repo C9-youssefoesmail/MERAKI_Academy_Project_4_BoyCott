@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { createMessage, deleteMessageById } = require("../controllers/contact");
+const { createMessage, deleteMessageById, getAllMessages } = require("../controllers/contact");
 const authentication = require("../middleware/authentication");
 const authorization = require("../middleware/authorization");
 
@@ -14,6 +14,7 @@ contactRouter.delete(
   authorization("DELETE_MESSAGE"),
   deleteMessageById
 );
+contactRouter.get("/",getAllMessages)
 
 contactRouter.use("*", (req, res) => {
   res.json("contactRouter is working");

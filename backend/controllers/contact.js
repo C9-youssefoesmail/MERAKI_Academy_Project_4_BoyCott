@@ -49,7 +49,20 @@ const deleteMessageById = (req, res) => {
     });
 };
 
+//getAllMessahes
+const getAllMessages = (req,res) => {
+  contactModel
+    .find({})
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+}
+
 module.exports = {
   createMessage,
   deleteMessageById,
+  getAllMessages,
 };

@@ -133,5 +133,3 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
-
-// { name, email, text }

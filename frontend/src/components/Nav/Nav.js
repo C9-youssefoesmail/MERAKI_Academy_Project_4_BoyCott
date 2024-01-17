@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../../App";
+import EmailIcon from "@mui/icons-material/Email";
 import "./style.css";
 
 //!----------styled
@@ -66,11 +67,7 @@ const Nav = () => {
         <StyledToolbar className="navbar">
           <Typography>
             <Link to="/">
-              <Button
-                variant="contained"
-              >
-                Home
-              </Button>
+              <Button variant="contained">Home</Button>
             </Link>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-label">product</InputLabel>
@@ -91,10 +88,19 @@ const Nav = () => {
             <Icons>
               <ButtonGroup variant="contained">
                 {userStatus === "admin" ? (
-                  <Link to="/CreateProduct">
-                    <Button>Create Product</Button>
+                  <>
+                    <Link to="/messages">
+                      <EmailIcon fontSize="large" color="action"/>
+                    </Link>
+                    <Link to="/CreateProduct">
+                      <Button>Create Product</Button>
+                    </Link>
+                  </>
+                ) : (
+                  <Link to="/contactUs">
+                    <Button>contact us</Button>
                   </Link>
-                ) : <Link to="/contactUs"><Button>contact us</Button></Link>}
+                )}
                 <Link
                   to="/"
                   onClick={() => {
@@ -114,7 +120,9 @@ const Nav = () => {
           ) : (
             <Icons>
               <ButtonGroup variant="contained">
-              <Link to="/contactUs"><Button>contact us</Button></Link>
+                <Link to="/contactUs">
+                  <Button>contact us</Button>
+                </Link>
                 <Link to="/Login">
                   <Button>Login</Button>
                 </Link>

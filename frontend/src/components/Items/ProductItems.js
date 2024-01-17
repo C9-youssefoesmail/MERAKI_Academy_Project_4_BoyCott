@@ -13,10 +13,12 @@ import {
 } from "@mui/material";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 //!----------------------productItems function
 const ProductItems = () => {
-
   //!----------------------useState
   const [products, setProducts] = useState([]);
 
@@ -51,23 +53,22 @@ const ProductItems = () => {
     getAllProducts();
   }, []);
 
+  //!
+  const copyURL = (id) => {
+    navigator.clipboard.writeText(`http://localhost:3000/${id}/Details`)
+  }
+
   //!----------------------return the component
   return (
     <div className="Products">
       {products.map((productItem, i) => {
         return (
-          <Box
-            flex={1}
-            p={2}
-            sx={{
-              width: "200px",
-            }}
-          >
+          <Box flex={1} p={2}>
             <List>
               <ListItem disablePadding>
-                <Card elevation={3}>
+                <Card elevation={3} className="cards">
                   <CardMedia
-                    sx={{ height: 200 }}
+                    sx={{ height: 200, width: 200 }}
                     image={productItem.productImage}
                     title={productItem.productName}
                   />
@@ -76,13 +77,22 @@ const ProductItems = () => {
                       {productItem.productName}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {productItem.reason}
+                      {productItem.isSafeProduct ? (
+                        <ThumbUpAltIcon />
+                      ) : (
+                        <ThumbDownAltIcon />
+                      )}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small"
-                    //onClick={URL}
-                    >Share</Button>
+                    <Button
+                      size="small"
+                      onClick={()=>{
+                        copyURL(productItem._id)
+                      }}
+                    >
+                      <ContentCopyIcon/>
+                    </Button>
                     <Button
                       size="small"
                       onClick={() => {

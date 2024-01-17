@@ -42,8 +42,10 @@ function App() {
       }}
     >
       <div className="App">
-        <Box>
-          <Nav />
+        <Nav />
+        <Container>
+          <Box>
+          
           <Routes>
             <Route path="/:id/Details" element={<Details />}></Route>
             <Route path="/Register" element={<Register />}></Route>
@@ -52,6 +54,8 @@ function App() {
             <Route path="/CreateProduct" element={<CreateProduct />}></Route>
           </Routes>
         </Box>
+        </Container>
+        
       </div>
     </LoginContext.Provider>
   );

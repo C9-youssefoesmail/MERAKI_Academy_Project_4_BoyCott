@@ -39,7 +39,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 //!----------------------Details function
 const Details = () => {
-
   //!----------------------useContext
   const { token, userStatus } = useContext(LoginContext);
 
@@ -53,6 +52,9 @@ const Details = () => {
   const [productMap, setProductMap] = useState([]);
   const [oppositeProduct, setOppositeProduct] = useState("");
   const [message, setMessage] = useState("");
+
+  //!----------------------commentArr
+  const [commentArr, setCommentArr] = useState([]);
 
   //!----------------------product id from URL
   const { id } = useParams();
@@ -109,12 +111,14 @@ const Details = () => {
         .then((result) => {
           //! How to filter
           goToProduct();
+          setCommentArr(comment);
+          console.log(commentArr);
         })
         .catch((err) => {
           console.log("error => ", err);
         });
     } else {
-      setMessage(<Alert severity="error">please Login.</Alert>)
+      setMessage(<Alert severity="error">please Login.</Alert>);
       console.log("out of IF", comment, product);
     }
   };
@@ -286,7 +290,7 @@ const Details = () => {
           <Grid item xs={12}>
             <Item elevation={3}>
               <TextField
-              sx={{display: "flex"}}
+                sx={{ display: "flex" }}
                 id="outlined-textarea"
                 label="comment..."
                 multiline

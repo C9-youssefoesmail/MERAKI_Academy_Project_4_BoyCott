@@ -1,9 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   AppBar,
   Box,
   Button,
   ButtonGroup,
+  FormControl,
+  InputLabel,
+  Menu,
+  MenuItem,
+  Select,
   Toolbar,
   Typography,
   styled,
@@ -25,9 +30,35 @@ const Icons = styled(Box)(({ theme }) => ({
 }));
 
 const Nav = () => {
+  //!---------------useState
+  const [safe, setSafe] = useState("");
+
   //!---------------useContext
-  const { isLoggedIn, setToken, setIsLoggedIn, setUserStatus, userStatus } =
-    useContext(LoginContext);
+  const {
+    isLoggedIn,
+    setToken,
+    setIsLoggedIn,
+    setUserStatus,
+    userStatus,
+    isTrue,
+    setIsTrue,
+    isFalse,
+    setIsFalse,
+  } = useContext(LoginContext);
+
+  const handleChange = (event) => {
+    setSafe(event.target.value);
+    if (event.target.value === "all") {
+      setIsTrue(true);
+      setIsFalse(false);
+    } else if (event.target.value === "boycott") {
+      setIsTrue(false);
+      setIsFalse(false);
+    } else if (event.target.value === "opposite") {
+      setIsTrue(true);
+      setIsFalse(true);
+    }
+  };
 
   //const navigate = useNavigate()
   //!--------------return
@@ -37,15 +68,30 @@ const Nav = () => {
         <StyledToolbar className="navbar">
           <Typography>
             <Link to="/">
-              <Button variant="contained">Home</Button>
+              <Button
+                variant="contained"
+              >
+                Home
+              </Button>
             </Link>
+            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-label">product</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={safe}
+                label="product"
+                onChange={handleChange}
+              >
+                <MenuItem value={"all"}>all</MenuItem>
+                <MenuItem value={"boycott"}>boycott</MenuItem>
+                <MenuItem value={"opposite"}>opposite</MenuItem>
+              </Select>
+            </FormControl>
           </Typography>
           {isLoggedIn ? (
             <Icons>
               <ButtonGroup variant="contained">
-                <Link to="/Profile">
-                  <Button>Profile</Button>
-                </Link>
                 {userStatus === "admin" ? (
                   <Link to="/CreateProduct">
                     <Button>Create Product</Button>

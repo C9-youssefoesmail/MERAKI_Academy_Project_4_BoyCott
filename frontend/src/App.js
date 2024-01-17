@@ -26,6 +26,8 @@ function App() {
     localStorage.getItem("userStatus") || ""
   );
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
+  const [isTrue, setIsTrue] = useState(true);
+  const [isFalse, setIsFalse] = useState(false);
 
   //return
   return (
@@ -39,23 +41,25 @@ function App() {
         setUserStatus,
         userId,
         setUserId,
+        isTrue,
+        setIsTrue,
+        isFalse,
+        setIsFalse,
       }}
     >
       <div className="App">
         <Nav />
         <Container>
           <Box>
-          
-          <Routes>
-            <Route path="/:id/Details" element={<Details />}></Route>
-            <Route path="/Register" element={<Register />}></Route>
-            <Route path="/Login" element={<Login />}></Route>
-            <Route path="/" element={<ProductItems />}></Route>
-            <Route path="/CreateProduct" element={<CreateProduct />}></Route>
-          </Routes>
-        </Box>
+            <Routes>
+              <Route path="/:id/Details" element={<Details />}></Route>
+              <Route path="/Register" element={<Register />}></Route>
+              <Route path="/Login" element={<Login />}></Route>
+              <Route path="/" element={<ProductItems />}></Route>
+              <Route path="/CreateProduct" element={<CreateProduct />}></Route>
+            </Routes>
+          </Box>
         </Container>
-        
       </div>
     </LoginContext.Provider>
   );

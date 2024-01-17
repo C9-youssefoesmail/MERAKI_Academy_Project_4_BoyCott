@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
+  Alert,
   Box,
   Button,
   CardMedia,
@@ -51,6 +52,7 @@ const Details = () => {
   const [product, setProduct] = useState("");
   const [productMap, setProductMap] = useState([]);
   const [oppositeProduct, setOppositeProduct] = useState("");
+  const [message, setMessage] = useState("");
 
   //!----------------------product id from URL
   const { id } = useParams();
@@ -112,6 +114,7 @@ const Details = () => {
           console.log("error => ", err);
         });
     } else {
+      setMessage(<Alert severity="error">please Login.</Alert>)
       console.log("out of IF", comment, product);
     }
   };
@@ -303,6 +306,7 @@ const Details = () => {
               >
                 Add
               </Button>
+              {message ? <div>{message}</div> : ""}
               {productDetails.review &&
                 productDetails.review.map((comment, i) => {
                   console.log(comment);

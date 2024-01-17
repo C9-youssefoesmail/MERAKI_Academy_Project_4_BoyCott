@@ -54,7 +54,7 @@ const Details = () => {
   const [message, setMessage] = useState("");
 
   //!----------------------commentArr
-  const [commentArr, setCommentArr] = useState([]);
+  const commentArr = []
 
   //!----------------------product id from URL
   const { id } = useParams();
@@ -110,9 +110,14 @@ const Details = () => {
         })
         .then((result) => {
           //! How to filter
-          goToProduct();
-          setCommentArr(comment);
-          console.log(commentArr);
+          const newProductDetails = productDetails.review.map((comm, i)=>{
+            return comm.comment
+          })
+          newProductDetails.push(comment)
+          console.log(product, comment, newProductDetails);
+          productDetails.review = newProductDetails
+          console.log(productDetails);
+          setProductDetails(productDetails)
         })
         .catch((err) => {
           console.log("error => ", err);
@@ -141,6 +146,7 @@ const Details = () => {
   };
 
   //!----------------------deleteCommentFromAdmin
+  console.log(productDetails);
   const deleteCommentFromAdmin = (id) => {
     axios
       .delete(`http://localhost:5000/comments/search_2/${id}`, {

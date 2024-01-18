@@ -194,39 +194,39 @@ const Details = () => {
         <Grid container spacing={0}>
           <Grid item xs={4}>
             <Item elevation={3}>
-              <List>
-                <CardMedia
+              <List sx={{height:"400px"}}>
+                <CardMedia 
                   component="img"
-                  image={productDetails.productImage}
+                  image={productDetails.productImage}  sx={{height: "100%",objectFit:"cover",width:"100%"}}
+                  
                 />
               </List>
             </Item>
           </Grid>
           <Grid item xs={8}>
             <Item elevation={3}>
-              <p>product name: </p>
+              <p sx={{textAlign:"left"}}>product name: </p>
               {productDetails.productName}
-            </Item>
-            <Item elevation={3}>
+              <hr/>
               <p>reason: </p>
               {productDetails.reason}
-              <br />
+              <hr />
               <Link target="_blank" href={productDetails.link}>
                 Link
               </Link>
-            </Item>
-            <Item elevation={3}>
-              {productDetails.isSafeProduct ? (
+              <hr/>
+              <div>
+                {productDetails.isSafeProduct ? (
                 <ThumbUpAltIcon />
               ) : (
                 <ThumbDownAltIcon />
               )}
-            </Item>
-            <Item elevation={3}>
+              </div>
+              <hr/>
               <p>Type: </p>
               {productDetails.categories && productDetails.categories.typeName}
             </Item>
-            <Item elevation={3}>
+            {!productDetails.isSafeProduct ? <Item elevation={3}>
               <p>opposite product: </p>
               {productDetails.isSafeProduct ? (
                 ""
@@ -260,7 +260,7 @@ const Details = () => {
               ) : (
                 "opposite not found"
               )}
-            </Item>
+            </Item>: ""}
             {userStatus === "admin" && (
               <Item elevation={3}>
                 <Button

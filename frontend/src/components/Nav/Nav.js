@@ -6,7 +6,6 @@ import {
   ButtonGroup,
   FormControl,
   InputLabel,
-  Menu,
   MenuItem,
   Select,
   Toolbar,

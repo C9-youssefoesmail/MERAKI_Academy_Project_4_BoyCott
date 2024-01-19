@@ -4,13 +4,6 @@ import axios from "axios";
 import {
   Box,
   Button,
-  Card,
-  CardActions,
-  CardContent,
-  List,
-  ListItem,
-  Typography,
-  CardMedia,
   Grid,
   Paper,
 } from "@mui/material";

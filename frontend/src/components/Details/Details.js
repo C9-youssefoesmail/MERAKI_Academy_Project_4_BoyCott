@@ -109,15 +109,16 @@ const Details = () => {
           headers: { authorization: `Bearer ${token}` },
         })
         .then((result) => {
+          goToProduct()
           //! How to filter
-          const newProductDetails = productDetails.review.map((comm, i)=>{
-            return comm.comment
-          })
-          newProductDetails.push(comment)
-          console.log(product, comment, newProductDetails);
-          productDetails.review = newProductDetails
-          console.log(productDetails);
-          setProductDetails(productDetails)
+          // const newProductDetails = productDetails.review.map((comm, i)=>{
+          //   return comm.comment
+          // })
+          // newProductDetails.push(comment)
+          // console.log(product, comment, newProductDetails);
+          // productDetails.review = newProductDetails
+          // console.log(productDetails);
+          // setProductDetails(productDetails)
         })
         .catch((err) => {
           console.log("error => ", err);

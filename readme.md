@@ -3,7 +3,7 @@
 
  </a>
 </p>
- ![1](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott/assets/146854912/9d2a5e88-5d51-4477-a519-17f404093b78)
+![1](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott/assets/146854912/60ad4db6-066e-4e1a-bc34-7d9a2c5d83c2)
 
 <h3 align="center">Project Title
 </h3>

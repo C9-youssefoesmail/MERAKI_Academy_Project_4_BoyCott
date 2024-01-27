@@ -1,6 +1,6 @@
 <p align="center">
-<a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="100px" src="https://www.meraki-academy.org/assets/img/logov02.svg" alt="Project logo">
+<a href="[[https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott)](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott)">
+ <img width="400px" height="100px" src="[https://www.meraki-academy.org/assets/img/logov02.svg" alt="Project logo](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott)">
  </a>
 </p>
 

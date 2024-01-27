@@ -93,7 +93,8 @@ Your trello board link
 
 ## Data Flow <a name = "#data_flow"></a>
 
-https://trello.com/1/cards/6595a645e31564902a91f003/attachments/6598388263c204c9f8783f41/previews/6598388363c204c9f8783f4e/download/image.png
+![Screenshot_1](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott/assets/146854912/23351dc4-9b11-480a-b53a-66e19c5c0a38)
+
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 

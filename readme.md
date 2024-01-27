@@ -45,7 +45,7 @@ These instructions will get you a copy of the project up and running on your loc
 1. Clone the repo to your local machine using git bash.
 
 ```
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott.git
 ```
 
 2. Install packeges repeat this step in backend and frontend folder

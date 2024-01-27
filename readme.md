@@ -70,13 +70,14 @@ Now app ready to use
 
 ## 🎈 Usage <a name="usage"></a>
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+You can use the project by following the steps.
 
 Ex.
 
-- You don't have to register to navigate our web app
-- You can click on the **Home** tab provided in the navigation bar to view the home section
-- You can click on the **Add to cart** button to add this product to your cart but you have to be one of our users, so you should create an account
+- On the main page you will see in the navbar the **Home**, dropdown list of type **Product**, **Login**, and **Register** ..... in body you will see all products.
+- The **Home** page shows the main page.
+- **Register** to create a user name & password.
+- dropdown list **Product**, you can choose the product that we should boycott and the opposite.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 

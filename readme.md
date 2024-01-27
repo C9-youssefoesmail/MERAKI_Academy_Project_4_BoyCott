@@ -1,9 +1,8 @@
 <p align="center">
 <a href="[[https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott)](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott)">
-
+![1](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott/assets/146854912/60ad4db6-066e-4e1a-bc34-7d9a2c5d83c2)
  </a>
 </p>
-![1](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott/assets/146854912/60ad4db6-066e-4e1a-bc34-7d9a2c5d83c2)
 
 <h3 align="center">Project Title
 </h3>

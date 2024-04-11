@@ -1,6 +1,6 @@
+![1](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott/assets/146854912/60ad4db6-066e-4e1a-bc34-7d9a2c5d83c2)
 <p align="center">
-<a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="100px" src="https://www.meraki-academy.org/assets/img/logov02.svg" alt="Project logo">
+<a href="[[https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott)](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott)">
  </a>
 </p>
 
@@ -27,9 +27,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
-
-Ex. Are you looking for a quick and easy way to action, action, and action? The **(name of application)** is the greatest and most accurate application to do this for you. It helps you to **(list of activities)**. The **(name of application)** provides a simple design to ensure having the best user experience.
+The **(Boycott)** is a project aims to boycott products that support Israel. I used MongoDB as the database and Material UI for the frontend.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -37,17 +35,17 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Visual Studio Code follow this <a href=''>link</a> to install.
-- Git Bash follow this <a href=''>link</a> to install.
-- MongoDB follow this <a href=''>link</a> to install.
-- Node.js follow this <a href=''>link</a> to install.
+- Visual Studio Code follow this <a href='https://code.visualstudio.com/'>link</a> to install.
+- Git Bash follow this <a href='https://git-scm.com/downloads'>link</a> to install.
+- MongoDB follow this <a href='https://www.mongodb.com/try/download/community'>link</a> to install.
+- Postman follow this <a href='https://www.postman.com/downloads/'>link</a> to install.
 
 ### Installing:
 
 1. Clone the repo to your local machine using git bash.
 
 ```
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott.git
 ```
 
 2. Install packeges repeat this step in backend and frontend folder
@@ -65,20 +63,21 @@ npm run dev
 4. Run application using git bash inside frontend folder
 
 ```
-npm run start
+npm start
 ```
 
 Now app ready to use
 
 ## 🎈 Usage <a name="usage"></a>
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+You can use the project by following the steps.
 
 Ex.
 
-- You don't have to register to navigate our web app
-- You can click on the **Home** tab provided in the navigation bar to view the home section
-- You can click on the **Add to cart** button to add this product to your cart but you have to be one of our users, so you should create an account
+- On the main page you will see in the navbar the **Home**, dropdown list of type **Product**, **Login**, and **Register** ..... in body you will see all products.
+- The **Home** page shows the main page.
+- **Register** to create a user name & password.
+- dropdown list **Product**, you can choose the product that we should boycott and the opposite.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -90,11 +89,12 @@ Ex.
 ## User Story <a name = "#user_story"></a>
 
 Your trello board link
-<a href=''>Trello</a>
+<a href='https://trello.com/b/yXaA1yat/boycott'>Trello</a>
 
 ## Data Flow <a name = "#data_flow"></a>
 
-<img width=200px height=200px src="https://cacoo.com/assets/site/img/templates/screenshots/er-database-diagram.png" alt="Diagram"></a>
+![Screenshot_1](https://github.com/C9-youssefoesmail/MERAKI_Academy_Project_4_BoyCott/assets/146854912/23351dc4-9b11-480a-b53a-66e19c5c0a38)
+
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 

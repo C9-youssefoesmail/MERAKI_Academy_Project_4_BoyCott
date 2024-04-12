@@ -47,7 +47,7 @@ const Register = () => {
   const handleRegister = () => {
     if (email && password && userName) {
       axios
-        .post("http://localhost:5000/users/register", newUser)
+        .post("https://meraki-academy-project-4-boycott-2.onrender.com/users/register", newUser)
         .then((result) => {
           setMesage(result.data.message);
           navigate("/");

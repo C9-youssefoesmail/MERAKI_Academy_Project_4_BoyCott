@@ -54,7 +54,7 @@ const CreateProduct = () => {
   //!----------------goToProduct
   const getCategories = () => {
     axios
-      .get(`http://localhost:5000/categories`)
+      .get(`https://meraki-academy-project-4-boycott-2.onrender.com/categories`)
       .then((result) => {
         setAllCategories(result.data);
       })
@@ -76,7 +76,7 @@ const CreateProduct = () => {
     ) {
       setWarningAlert(false);
       axios
-        .post(`http://localhost:5000/products`, newProduct, {
+        .post(`https://meraki-academy-project-4-boycott-2.onrender.com/products`, newProduct, {
           headers: { authorization: `Bearer ${token}` },
         })
         .then((result) => {

@@ -22,7 +22,7 @@ const ContactUs = () => {
   //!----------------------getUserById
   const userIsExist = (id) => {
     axios
-      .get(`http://localhost:5000/users/${id}`)
+      .get(`https://meraki-academy-project-4-boycott-2.onrender.com/users/${id}`)
       .then((result) => {
         console.log(result.data._result);
         setName(result.data._result.userName);
@@ -45,7 +45,7 @@ const ContactUs = () => {
   const sendMessage = () => {
     if ((name, email, text)) {
       axios
-        .post(`http://localhost:5000/contact`, newMessage)
+        .post(`https://meraki-academy-project-4-boycott-2.onrender.com/contact`, newMessage)
         .then((result) => {
           console.log(result);
           setMessage(<Alert severity="success">Sent successfully.</Alert>);

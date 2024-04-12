@@ -63,7 +63,7 @@ const Details = () => {
   //!----------------------goToProduct
   const goToProduct = () => {
     axios
-      .get(`http://localhost:5000/products/search_1/${id}`)
+      .get(`https://meraki-academy-project-4-boycott-2.onrender.com/products/search_1/${id}`)
       .then((result) => {
         setProduct(id);
         setProductDetails(result.data._product[0]);
@@ -77,7 +77,7 @@ const Details = () => {
   //!----------------------getAllProducts
   const getAllProducts = () => {
     axios
-      .get("http://localhost:5000/products")
+      .get("https://meraki-academy-project-4-boycott-2.onrender.com/products")
       .then((result) => {
         setProductMap(result.data);
         console.log(result.data);
@@ -90,7 +90,7 @@ const Details = () => {
   //!----------------------deleteProduct
   const deleteProduct = () => {
     axios
-      .delete(`http://localhost:5000/products/${id}`)
+      .delete(`https://meraki-academy-project-4-boycott-2.onrender.com/products/${id}`)
       .then((result) => {
         console.log("deleted");
         navigate("/");
@@ -105,7 +105,7 @@ const Details = () => {
     console.log(id);
     if (comment && product) {
       axios
-        .post(`http://localhost:5000/comments`, commentVar, {
+        .post(`https://meraki-academy-project-4-boycott-2.onrender.com/comments`, commentVar, {
           headers: { authorization: `Bearer ${token}` },
         })
         .then((result) => {
@@ -132,7 +132,7 @@ const Details = () => {
   //!----------------------deleteComment
   const deleteComment = (id) => {
     axios
-      .delete(`http://localhost:5000/comments/search_1/${id}`, {
+      .delete(`https://meraki-academy-project-4-boycott-2.onrender.com/comments/search_1/${id}`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((result) => {
@@ -150,7 +150,7 @@ const Details = () => {
   console.log(productDetails);
   const deleteCommentFromAdmin = (id) => {
     axios
-      .delete(`http://localhost:5000/comments/search_2/${id}`, {
+      .delete(`https://meraki-academy-project-4-boycott-2.onrender.com/comments/search_2/${id}`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((result) => {
@@ -169,7 +169,7 @@ const Details = () => {
     console.log("updateProduct Function");
     if (newOpposite !== "") {
       axios
-        .put(`http://localhost:5000/products/${id}`, newOpposite)
+        .put(`https://meraki-academy-project-4-boycott-2.onrender.com/products/${id}`, newOpposite)
         .then((result) => {
           console.log("Done");
         })

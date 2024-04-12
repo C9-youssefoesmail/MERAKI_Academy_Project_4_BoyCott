@@ -31,7 +31,7 @@ const Messages = () => {
   //!----------------contactMessages
   const contactMessages = () => {
     axios
-      .get(`http://localhost:5000/contact`)
+      .get(`https://meraki-academy-project-4-boycott-2.onrender.com/contact`)
       .then((result) => {
         console.log(result.data);
         setContacts(result.data);
@@ -43,7 +43,7 @@ const Messages = () => {
 
   //!----------------deleteMessage
   const deleteMessage = (id) => {
-    axios.delete(`http://localhost:5000/contact/${id}`, {
+    axios.delete(`https://meraki-academy-project-4-boycott-2.onrender.com/contact/${id}`, {
       headers: { authorization: `Bearer ${token}` },
     })
     .then((result)=>{

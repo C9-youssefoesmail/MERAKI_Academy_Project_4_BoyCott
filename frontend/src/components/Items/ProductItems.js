@@ -32,7 +32,7 @@ const ProductItems = () => {
   //!----------------------getAllProducts
   const getAllProducts = () => {
     axios
-      .get("http://localhost:5000/products")
+      .get("https://meraki-academy-project-4-boycott-2.onrender.com/products")
       .then((result) => {
         setProducts(result.data);
         console.log(result.data);
@@ -43,7 +43,7 @@ const ProductItems = () => {
   //!----------------------goToProduct page
   const goToProduct = (id) => {
     axios
-      .get(`http://localhost:5000/products/search_1/${id}`)
+      .get(`https://meraki-academy-project-4-boycott-2.onrender.com/products/search_1/${id}`)
       .then((result) => {
         navigate(`/${id}/Details`);
       })
